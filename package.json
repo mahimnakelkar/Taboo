@@ -1,16 +1,24 @@
 {
-	"name": "NodejsStarterApp",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-		"express": "4.13.x",
-		"cfenv": "1.0.x"
-	},
-	"repository": {},
-	"engines": {
-		"node": "4.x"
-	} 
+  "name": "NodejsStarterApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "tsc && concurrently \"npm run tsc:w\" \"node app.js\"",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "postInstall": "typings install"
+  },
+  "dependencies": {
+    "express": "4.13.x",
+    "cfenv": "1.0.x"
+  },
+  "repository": {},
+  "engines": {
+    "node": "4.x"
+  },
+  "devDependencies": {
+    "concurrently": "^3.1.0",
+    "typescript": "^2.0.10",
+    "typings": "^2.0.0"
+  }
 }
