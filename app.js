@@ -3,6 +3,20 @@
 // node.js starter application for Bluemix
 //------------------------------------------------------------------------------
 
+// Configuring mongodb for test use
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://root:password@ds111788.mlab.com:11788/taboo');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+
+    console.log('connected to the database');
+
+});
+
+require('./models.js')();
+
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
 var express = require('express');
