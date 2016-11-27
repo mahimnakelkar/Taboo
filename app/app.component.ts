@@ -3,7 +3,17 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'my-app',
     template: `
-        <p>Hello World!</p>
+        <main>
+
+        	<div class="jumbotron">
+        		<h1> Hello World!! </h1>
+        	</div>
+
+
+        </main>
     `
 })
-export class AppComponent {}
+export class AppComponent {
+
+
+}
