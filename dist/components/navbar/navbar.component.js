@@ -12,6 +12,9 @@ var core_1 = require('@angular/core');
 var NavBarComponent = (function () {
     function NavBarComponent() {
     }
+    NavBarComponent.prototype.getSignupPage = function () {
+        console.log("BLAH ");
+    };
     NavBarComponent = __decorate([
         core_1.Component({
             selector: 'navbar',

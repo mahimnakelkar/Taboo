@@ -1,5 +1,9 @@
+/*
+	CSS styles for the body
+*/
 .login {
 	float:right;
+	cursor:pointer;
 }
 
 .navbar-header {

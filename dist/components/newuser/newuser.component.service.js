@@ -9,23 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.page = "main";
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+var newuserservice = (function () {
+    function newuserservice(http) {
+        this.http = http;
     }
-    AppComponent.prototype.changePage = function (state) {
-        if (state === void 0) { state = "main"; }
-        this.page = state;
+    newuserservice.prototype.addUser = function (user) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post("/api/user", JSON.stringify(user), { headers: headers }).map(function (response) { return response.json(); });
     };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: "taboo-app",
-            templateUrl: 'client/components/app/app.component.html',
-            styleUrls: ["client/components/app/app.component.css"]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    newuserservice = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], newuserservice);
+    return newuserservice;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.newuserservice = newuserservice;
+//# sourceMappingURL=newuser.component.service.js.map

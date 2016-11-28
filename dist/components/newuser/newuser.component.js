@@ -9,16 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var newuser_component_service_1 = require('./newuser.component.service');
 var NewUserComponent = (function () {
-    function NewUserComponent() {
-        this.newUser = "";
+    function NewUserComponent(newuserservice) {
+        this.newuserservice = newuserservice;
     }
+    NewUserComponent.prototype.addUser = function () {
+        var user = {
+            username: 'eric',
+            password: 'bond' //this.password
+        };
+        this.newuserservice.addUser(user);
+    };
     NewUserComponent = __decorate([
         core_1.Component({
             selector: 'new-user',
             templateUrl: 'client/components/newuser/newuser.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [newuser_component_service_1.newuserservice])
     ], NewUserComponent);
     return NewUserComponent;
 }());
