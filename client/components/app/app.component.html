@@ -9,7 +9,7 @@
 	        	Sign Up 
 	        </span>
 
-	        <span (click) = "changePage('signup')" class="navbar-brand login">
+	        <span (click) = "changePage('login')" class="navbar-brand login">
 	            Login
 	        </span>
 	    </div>
@@ -23,5 +23,7 @@
     <div *ngIf="page == 'signup'">
     	<new-user> </new-user>
     </div>
-
+    <div *ngIf="page == 'login'">
+    	<login-user>	</login-user>
+    </div>
 </main>
