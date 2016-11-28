@@ -9,17 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var BodyComponent = (function () {
+    function BodyComponent() {
+        // Connect this part to database later
+        this.cards = [
+            { color: "green", hints: ["Clue1", "Clue2"] },
+            { color: "red", hints: ["Clue1"] },
+            { color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
+        ];
     }
-    AppComponent = __decorate([
+    BodyComponent.prototype.getColor = function (card) {
+        if (card === void 0) { card = { color: "green" }; }
+        return card.color;
+    };
+    BodyComponent.prototype.addCard = function () {
+        this.cards.push({ color: "green", hints: ["Clue1", "Clue2"] });
+    };
+    BodyComponent = __decorate([
         core_1.Component({
-            selector: "my-app",
-            templateUrl: '../views/index.html'
+            selector: 'main-app',
+            templateUrl: '../views/main.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], BodyComponent);
+    return BodyComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.BodyComponent = BodyComponent;
+//# sourceMappingURL=body.component.js.map
