@@ -1,7 +1,27 @@
 <header>
-    <navbar> </navbar>
+	<nav class ="navbar navbar-inverse">
+	    <div class = "navbar-header">			
+	        <span>
+	            <a href= "/" class="navbar-brand"> Taboo </a>
+	        </span>
+
+	        <span (click) = "changePage('signup')" class="navbar-brand login"> 
+	        	Sign Up 
+	        </span>
+
+	        <span (click) = "changePage('signup')" class="navbar-brand login">
+	            Login
+	        </span>
+	    </div>
+	</nav>
 </header>
 
 <main>
-    <main-app> </main-app>
+	<div *ngIf="page == 'main'">
+    	<main-app> </main-app>
+    </div>
+    <div *ngIf="page == 'signup'">
+    	<new-user> </new-user>
+    </div>
+
 </main>

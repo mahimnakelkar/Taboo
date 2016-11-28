@@ -9,23 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.page = "main";
+var SignUpPageComponent = (function () {
+    function SignUpPageComponent() {
     }
-    AppComponent.prototype.changePage = function (state) {
-        if (state === void 0) { state = "main"; }
-        this.page = state;
-    };
-    AppComponent = __decorate([
+    SignUpPageComponent = __decorate([
         core_1.Component({
-            selector: "taboo-app",
-            templateUrl: 'client/components/app/app.component.html',
-            styleUrls: ["client/components/app/app.component.css"]
+            selector: "signup-page",
+            templateUrl: 'client/components/signupPage/signupPage.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], SignUpPageComponent);
+    return SignUpPageComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.SignUpPageComponent = SignUpPageComponent;
+//# sourceMappingURL=signupPage.component.js.map

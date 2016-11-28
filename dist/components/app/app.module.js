@@ -13,14 +13,13 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var newuser_component_1 = require('../newuser/newuser.component');
 var body_component_1 = require('../body/body.component');
-var navbar_component_1 = require('../navbar/navbar.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent, newuser_component_1.NewUserComponent, body_component_1.BodyComponent, navbar_component_1.NavBarComponent],
+            declarations: [app_component_1.AppComponent, newuser_component_1.NewUserComponent, body_component_1.BodyComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

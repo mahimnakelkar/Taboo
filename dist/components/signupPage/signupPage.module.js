@@ -9,23 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.page = "main";
+var platform_browser_1 = require('@angular/platform-browser');
+var signupPage_component_1 = require('./signupPage.component');
+var newuser_component_1 = require('../newuser/newuser.component');
+var navbar_component_1 = require('../navbar/navbar.component');
+var SignUpPageModule = (function () {
+    function SignUpPageModule() {
     }
-    AppComponent.prototype.changePage = function (state) {
-        if (state === void 0) { state = "main"; }
-        this.page = state;
-    };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: "taboo-app",
-            templateUrl: 'client/components/app/app.component.html',
-            styleUrls: ["client/components/app/app.component.css"]
+    SignUpPageModule = __decorate([
+        core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule],
+            declarations: [signupPage_component_1.SignUpPageComponent, newuser_component_1.NewUserComponent, navbar_component_1.NavBarComponent],
+            bootstrap: [signupPage_component_1.SignUpPageComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], SignUpPageModule);
+    return SignUpPageModule;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.SignUpPageModule = SignUpPageModule;
+//# sourceMappingURL=signupPage.module.js.map
