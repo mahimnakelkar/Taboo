@@ -9,20 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_component_1 = require('./app.component');
-var AppModule = (function () {
-    function AppModule() {
+var AppComponent = (function () {
+    function AppComponent() {
+        // Connect this part to database later
+        this.cards = [
+            { color: "green", hints: ["Clue1", "Clue2"] },
+            { color: "red", hints: ["Clue1"] },
+            { color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
+        ];
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent],
-            bootstrap: [app_component_1.AppComponent]
+    AppComponent.prototype.getColor = function (card) {
+        if (card === void 0) { card = { color: "green" }; }
+        return card.color;
+    };
+    AppComponent.prototype.addCard = function () {
+        this.cards.push({ color: "green", hints: ["Clue1", "Clue2"] });
+    };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            templateUrl: '../views/index.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], AppComponent);
+    return AppComponent;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.AppComponent = AppComponent;
+//# sourceMappingURL=app.component.js.map

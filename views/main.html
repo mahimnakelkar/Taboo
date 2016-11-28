@@ -1,0 +1,25 @@
+<button (click) = "addCard()"> Add Card </button> <p>
+        	<div *ngFor = "let card of cards">
+	        	<div class = "flip-container">
+	        		<div class = "flipper">
+	        			<div class = "front" >
+	        				<div class = "card" [style.background-color]="getColor(card)">
+	        					<div class = "clue">
+	        						<div *ngFor = "let hint of card.hints">
+	        							<span class="hint"> {{ hint }} </span>
+	        						</div>
+	        					</div>
+	        				</div>
+
+	        			</div>
+	        			<div class = "back">
+	        				<div class = "card" [style.background-color]="getColor(card)">
+	        					<div class="inputDiv">
+	        						<input type = 'text' class='answerInput'/>
+	        					</div>
+	        				</div>
+
+	        			</div>
+	        		</div>
+	        	</div>
+        	</div>
