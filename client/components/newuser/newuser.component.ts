@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'new-user',
-    templateUrl: '../views/new-user.html'
+    templateUrl: 'client/components/newuser/newuser.component.html'
 })
 
 export class NewUserComponent{
