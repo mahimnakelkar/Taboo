@@ -15,7 +15,13 @@ db.once('open', function() {
 
 });
 
-require('./models.js')();
+require('./models/models.js')();
+
+var bodyParser = require('body-parser');
+
+var UserRoute = require('./routes/user.js');
+
+
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
@@ -28,8 +34,13 @@ var cfenv = require('cfenv');
 // create a new express server
 var app = express();
 
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname));
+
+app.use('/api/user', UserRoute);
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
