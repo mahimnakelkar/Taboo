@@ -11,20 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var newuser_component_service_1 = require('./newuser.component.service');
 var NewUserComponent = (function () {
-    function NewUserComponent(newuserservice) {
-        this.newuserservice = newuserservice;
+    function NewUserComponent(userservice) {
+        this.userservice = userservice;
     }
     NewUserComponent.prototype.addUser = function () {
         var user = {
             username: 'eric',
             password: 'bond' //this.password
         };
-        this.newuserservice.addUser(user);
+        this.userservice.addUser(user);
     };
     NewUserComponent = __decorate([
         core_1.Component({
             selector: 'new-user',
-            templateUrl: 'client/components/newuser/newuser.component.html'
+            templateUrl: 'client/components/newuser/newuser.component.html',
+            providers: [newuser_component_service_1.newuserservice]
         }), 
         __metadata('design:paramtypes', [newuser_component_service_1.newuserservice])
     ], NewUserComponent);
