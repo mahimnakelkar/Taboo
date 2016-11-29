@@ -4,10 +4,11 @@ import { AppComponent } from './app.component';
 import { NewUserComponent } from  '../newuser/newuser.component';
 import { BodyComponent} from '../body/body.component';
 import { LoginComponent } from  '../login/login.component';
-
+import { HttpModule } from '@angular/http';
 @NgModule({
-    imports: [ BrowserModule ],
+    imports: [ BrowserModule, HttpModule ],
     declarations: [ AppComponent, NewUserComponent, BodyComponent, LoginComponent],
-    bootstrap: [ AppComponent]
+    bootstrap: [ AppComponent],
+    providers: []
 })
 export class AppModule {}
