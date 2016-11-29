@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router;
+var router = express.Router();
 var Team = require('../models/team.js');
 
 router.get('/', function(req, res) {
@@ -22,8 +22,8 @@ router.get('/', function(req, res) {
             if (err) return res.send().status(500);
 
             res.send(teams);
-        }
-    });
+        });
+    }
 
 });
 
@@ -34,7 +34,7 @@ router.post('/', function(req, res) {
     newteam.save(function(err, team) {
 
         if (err) return res.send().status(500);
-    }
+    });
 });
 
 module.exports = router;

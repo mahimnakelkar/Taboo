@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router;
+var router = express.Router();
 var Card = require('../models/card.js');
 
 router.get('/', function(req, res) {
@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 
             if (err) return res.send().status(500);
             res.send(cards).status(200);
-        }
+        });
     }
 });
 
