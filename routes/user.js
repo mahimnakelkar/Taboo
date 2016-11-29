@@ -5,10 +5,24 @@ var User = require('../models/user.js');
 router.get('/', function(req, res) {
     console.log(req.query);
 
-    User.find({}, function(err, users) {
-        console.log('ii');
-        res.send(users);
-    });
+    if ( req.query && req.query['score'] || req.query['username'] || req.query['team'] )
+    {
+        User.find( req.query, function (err, users) {
+
+            if (err) return res.send().status(500);
+
+            res.send(users).status(200);
+        });
+    }
+    else
+    {
+        User.find({}, function(err, users) {
+
+            if (err) return res.send().status(500);
+
+            res.send(users).status(200);
+        });
+    }
 });
 
 router.post('/', function(req,res) {

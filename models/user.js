@@ -5,7 +5,7 @@ var UserSchema = new Schema({
     score   : Number,
     username: String,
     password: String,
-    team    : String
+    team    : { type: Schema.Types.ObjectId, ref: 'Team' }
 });
 
 module.exports = mongoose.model('User', UserSchema);
