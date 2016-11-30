@@ -37,4 +37,22 @@ router.post('/', function(req, res) {
     });
 });
 
+router.delete('/', function(req, res) {
+
+    console.log(req.query);
+
+    if ( req.query && 'users' in req.query || 'score' in req.query || 'cards' in req.query ||
+'name' in req.query || 'color' in req.query || '_id' in req.query)
+    {
+        Team.find(req.query).remove().exec();
+        res.send(teams).status(200);
+    }
+    else
+    {
+        Team.find({}).remove().exec();
+        res.send(teams).status(200);
+    }
+
+});
+
 module.exports = router;

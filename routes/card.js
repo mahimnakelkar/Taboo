@@ -3,7 +3,6 @@ var router = express.Router();
 var Card = require('../models/card.js');
 
 router.get('/', function(req, res) {
-    console.log('query: ');
     console.log(req.query);
 
     if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query)
@@ -41,4 +40,18 @@ router.post('/', function(req, res) {
 
 });
 
+router.delete('/', function(req, res) {
+    console.log(req.query);
+
+    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query)
+    {
+        Card.find(req.query).remove().exec();
+        res.send().status(200);
+    }
+    else
+    {
+        Card.find({}).remove().exec();
+        res.send().status(200);
+    }
+});
 module.exports = router;

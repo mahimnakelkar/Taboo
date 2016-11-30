@@ -3,14 +3,10 @@ var router = express.Router();
 var User = require('../models/user.js');
 
 router.get('/', function(req, res) {
-    console.log('user api hit');
     console.log(req.query);
 
     if ( req.query && req.query['score'] || req.query['username'] || req.query['team'] || req.query['_id'] )
     {
-        //
-        console.log('looking');
-        //
         User.find( req.query, function (err, users) {
 
             if (err) return res.send().status(500);
@@ -44,4 +40,19 @@ router.post('/', function(req,res) {
 
 });
 
+router.delete('/', function(req,res) {
+    console.log(req.query);
+
+    if ( req.query && req.query['score'] || req.query['username'] || req.query['team'] || req.query['_id'] )
+    {
+        User.find(req.query).remove().exec();
+        res.send().status(200);
+    }
+    else
+    {
+        User.find({}).remove().exec();
+        res.send().status(200);
+    }
+
+});
 module.exports = router;
