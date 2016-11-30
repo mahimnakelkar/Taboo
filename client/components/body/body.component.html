@@ -5,7 +5,9 @@
 				<div class = "card" [style.background-color]="getColor(card)">
 					<div class = "clue">
 						<div *ngFor = "let hint of card.hints">
-							<span class="hint"> {{ hint }} </span>
+							<div class="hint-wrapper">
+								<span class="hint"> {{ hint }} </span>
+							</div>
 						</div>
 					</div>
 				</div>

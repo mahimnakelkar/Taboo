@@ -27,5 +27,9 @@ export class AppComponent {
 		else this.loginStatus = 'false';
 		console.log(this.loginStatus + "Yo");
 	}
+
+	logout() {
+		this.loginStatus = 'false';
+	}
 	
 }
