@@ -3,13 +3,13 @@ import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class bodycomponenttestservice {
+export class bodycomponentservice {
 	constructor(private http: Http){}
 
 	addCard(dummycard: any) {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		return this.http.post('api/card/', JSON.stringify(dummycard), {headers: headers});//.map(response => response.json());
+		return this.http.post('api/card/', JSON.stringify(dummycard), {headers: headers});
 
 	}
 	getCardById(id: string){

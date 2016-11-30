@@ -24,9 +24,8 @@ var BodyComponent = (function () {
     }
     BodyComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.cards.pop();
         this.testservice.getAllCards().subscribe(function (res) {
-            console.log('on init');
-            console.log(res);
             res.map(function (card) {
                 _this.cards.push(card);
             });
@@ -36,27 +35,14 @@ var BodyComponent = (function () {
         if (card === void 0) { card = { color: "green" }; }
         return card.color;
     };
-    BodyComponent.prototype.addCard = function () {
-        var dummycard = {
-            color: "red",
-            hints: ["clue1", "clue2"]
-        };
-        this.testservice.addCard(dummycard).subscribe(function (res) { console.log(res.status); });
-    };
-    BodyComponent.prototype.getCard = function () {
-        var id = '583df202a09009384018ef86';
-        this.testservice.getCardById(id).subscribe(function (res) {
-            console.log(res);
-        });
-    };
     BodyComponent = __decorate([
         core_1.Component({
             selector: 'main-app',
             templateUrl: 'client/components/body/body.component.html',
             styleUrls: ["client/components/body/body.component.css"],
-            providers: [body_component_test_service_1.bodycomponenttestservice]
+            providers: [body_component_test_service_1.bodycomponentservice]
         }), 
-        __metadata('design:paramtypes', [body_component_test_service_1.bodycomponenttestservice])
+        __metadata('design:paramtypes', [body_component_test_service_1.bodycomponentservice])
     ], BodyComponent);
     return BodyComponent;
 }());

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { bodycomponenttestservice } from './body.component.test.service';
+import { bodycomponentservice } from './body.component.test.service';
 
 class card{
 	color: string;
@@ -10,7 +10,7 @@ class card{
     selector: 'main-app',
     templateUrl: 'client/components/body/body.component.html',
     styleUrls:["client/components/body/body.component.css"],
-    providers:[bodycomponenttestservice]
+    providers:[bodycomponentservice]
 })
 
 export class BodyComponent{
@@ -20,10 +20,9 @@ export class BodyComponent{
 
 	ngOnInit()
 	{
+		this.cards.pop();
 	 	this.testservice.getAllCards().subscribe(res =>
 	 	{
-	 		console.log('on init');
-	 		console.log(res);
 	 		res.map((card:any)=>
 	 		{
 	 			this.cards.push(card);
@@ -34,20 +33,5 @@ export class BodyComponent{
 	 getColor(card = {color:"green"}) {
 	 	return card.color;
 	 }
-
-	 addCard() {
-	 	var dummycard = {
-	 		color: "red",
-	 		hints: ["clue1","clue2"]
-	 	}
-	 	this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
-	 }
-
-	 getCard() {
-	 	var id: string = '583df202a09009384018ef86';
-	 	this.testservice.getCardById(id).subscribe(res => {
-	 		console.log(res);
-	 	})
-	 }
-	 constructor(private testservice: bodycomponenttestservice){}
+	 constructor(private testservice: bodycomponentservice){}
 }

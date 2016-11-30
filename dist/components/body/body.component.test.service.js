@@ -11,26 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
-var bodycomponenttestservice = (function () {
-    function bodycomponenttestservice(http) {
+var bodycomponentservice = (function () {
+    function bodycomponentservice(http) {
         this.http = http;
     }
-    bodycomponenttestservice.prototype.addCard = function (dummycard) {
+    bodycomponentservice.prototype.addCard = function (dummycard) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('api/card/', JSON.stringify(dummycard), { headers: headers }); //.map(response => response.json());
+        return this.http.post('api/card/', JSON.stringify(dummycard), { headers: headers });
     };
-    bodycomponenttestservice.prototype.getCardById = function (id) {
+    bodycomponentservice.prototype.getCardById = function (id) {
         return this.http.get('api/card/?_id=' + id).map(function (response) { return response.json(); });
     };
-    bodycomponenttestservice.prototype.getAllCards = function () {
+    bodycomponentservice.prototype.getAllCards = function () {
         return this.http.get('api/card/').map(function (response) { return response.json(); });
     };
-    bodycomponenttestservice = __decorate([
+    bodycomponentservice.prototype.removeCards = function () {
+        return this.http.delete('api/card');
+    };
+    bodycomponentservice = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], bodycomponenttestservice);
-    return bodycomponenttestservice;
+    ], bodycomponentservice);
+    return bodycomponentservice;
 }());
-exports.bodycomponenttestservice = bodycomponenttestservice;
+exports.bodycomponentservice = bodycomponentservice;
 //# sourceMappingURL=body.component.test.service.js.map
