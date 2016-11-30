@@ -5,7 +5,7 @@ var CardSchema = new Schema({
     lat     : Number,
     lon     : Number,
     answer  : String,
-    hints   : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hint' }],
+    hints   : [String],
     color   : String
 });
 

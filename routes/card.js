@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Card = require('../models/card.js');
+var Hint = require('../models/hint.js');
 
 router.get('/', function(req, res) {
 
@@ -24,7 +25,10 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+
     var newcard = new Card(req.body);
+
+    console.log(newcard);
 
     newcard.save(function(err, user) {
 
