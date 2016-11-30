@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { bodycomponenttestservice } from './body.component.test.service';
 
+class card{
+	color: string;
+	hints: string[];
+}
+
 @Component({
     selector: 'main-app',
     templateUrl: 'client/components/body/body.component.html',
@@ -9,13 +14,22 @@ import { bodycomponenttestservice } from './body.component.test.service';
 })
 
 export class BodyComponent{
-	// Connect this part to database later
 	 cards = [
-	 	{color:"green", hints:["Clue1","Clue2"]},
-	 	{color:"red", hints:["Clue1"]},
 	 	{color:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
 	 ];
 
+	ngOnInit()
+	{
+	 	this.testservice.getAllCards().subscribe(res =>
+	 	{
+	 		console.log('on init');
+	 		console.log(res);
+	 		res.map((card:any)=>
+	 		{
+	 			this.cards.push(card);
+	 		})
+	 	});
+	 } 
 	 
 	 getColor(card = {color:"green"}) {
 	 	return card.color;
@@ -26,9 +40,7 @@ export class BodyComponent{
 	 		color: "red",
 	 		hints: ["clue1","clue2"]
 	 	}
-		this.cards.push({color:"green",hints:["Clue1","Clue2"]});
-		//cards.push(dummycard);
-	 	//this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
+	 	this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
 	 }
 
 	 getCard() {
@@ -37,8 +49,5 @@ export class BodyComponent{
 	 		console.log(res);
 	 	})
 	 }
-
-	 testval: string = 'initial';
 	 constructor(private testservice: bodycomponenttestservice){}
-		 
 }

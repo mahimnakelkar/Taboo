@@ -10,17 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var body_component_test_service_1 = require('./body.component.test.service');
+var card = (function () {
+    function card() {
+    }
+    return card;
+}());
 var BodyComponent = (function () {
     function BodyComponent(testservice) {
         this.testservice = testservice;
-        // Connect this part to database later
         this.cards = [
-            { color: "green", hints: ["Clue1", "Clue2"] },
-            { color: "red", hints: ["Clue1"] },
             { color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
         ];
-        this.testval = 'initial';
     }
+    BodyComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.testservice.getAllCards().subscribe(function (res) {
+            console.log('on init');
+            console.log(res);
+            res.map(function (card) {
+                _this.cards.push(card);
+            });
+        });
+    };
     BodyComponent.prototype.getColor = function (card) {
         if (card === void 0) { card = { color: "green" }; }
         return card.color;
@@ -30,9 +41,7 @@ var BodyComponent = (function () {
             color: "red",
             hints: ["clue1", "clue2"]
         };
-        this.cards.push({ color: "green", hints: ["Clue1", "Clue2"] });
-        //cards.push(dummycard);
-        //this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
+        this.testservice.addCard(dummycard).subscribe(function (res) { console.log(res.status); });
     };
     BodyComponent.prototype.getCard = function () {
         var id = '583df202a09009384018ef86';
