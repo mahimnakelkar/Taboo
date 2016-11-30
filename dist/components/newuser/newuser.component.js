@@ -10,21 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var newuser_component_service_1 = require('./newuser.component.service');
+var core_2 = require('@angular/core');
 var NewUserComponent = (function () {
     function NewUserComponent(userservice) {
         this.userservice = userservice;
         this.testval = "hello";
+        this.user = { username: "", password: "" };
+        this.loginStatus = false;
+        this.loginEmitter = new core_2.EventEmitter();
+        this.loginEmitter = new core_2.EventEmitter();
+        this.loginStatus = false;
+        this.loginEmitter.emit(this.loginStatus);
     }
     NewUserComponent.prototype.addUser = function () {
+        this.loginStatus = true;
+        this.loginEmitter.emit(this.loginStatus);
         console.log('in user component');
         console.log(this.username);
-        var user = {
+        this.user = {
             username: 'eric',
             password: 'bond' //this.password
         };
-        this.userservice.addUser(user).subscribe(function (res) {
+        /*
+        this.userservice.addUser(this.user).subscribe(res => {
             console.log(res);
         });
+        */
     };
     NewUserComponent.prototype.getUser = function () {
         this.userservice.getUserByUsername('eric').subscribe(function (res) {
@@ -35,7 +46,8 @@ var NewUserComponent = (function () {
         core_1.Component({
             selector: 'new-user',
             templateUrl: 'client/components/newuser/newuser.component.html',
-            providers: [newuser_component_service_1.newuserservice]
+            providers: [newuser_component_service_1.newuserservice],
+            outputs: ['loginEmitter', 'loginStatus']
         }), 
         __metadata('design:paramtypes', [newuser_component_service_1.newuserservice])
     ], NewUserComponent);

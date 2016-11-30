@@ -12,16 +12,25 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.page = "main";
+        this.loginStatus = 'false';
     }
     AppComponent.prototype.changePage = function (state) {
         if (state === void 0) { state = "main"; }
         this.page = state;
     };
+    AppComponent.prototype.changeLogin = function (loginStatus) {
+        if (loginStatus == true)
+            this.loginStatus = 'true';
+        else
+            this.loginStatus = 'false';
+        console.log(this.loginStatus + "Yo");
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: "taboo-app",
             templateUrl: 'client/components/app/app.component.html',
-            styleUrls: ["client/components/app/app.component.css"]
+            styleUrls: ["client/components/app/app.component.css"],
+            inputs: ['loginStatus']
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

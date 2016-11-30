@@ -26,9 +26,6 @@ var bodycomponentservice = (function () {
     bodycomponentservice.prototype.getAllCards = function () {
         return this.http.get('api/card/').map(function (response) { return response.json(); });
     };
-    bodycomponentservice.prototype.removeCards = function () {
-        return this.http.delete('api/card');
-    };
     bodycomponentservice = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

@@ -20,10 +20,14 @@
 	<div *ngIf="page == 'main'">
     	<main-app> </main-app>
     </div>
-    <div *ngIf="page == 'signup'">
-    	<new-user> </new-user>
+    <div *ngIf="page == 'signup' && loginStatus == 'false'">
+    	<new-user (loginEmitter) = "changeLogin($event)"> </new-user>
     </div>
     <div *ngIf="page == 'login'">
     	<login-user>	</login-user>
+    </div>
+
+    <div *ngIf="loginStatus == 'true'">
+    	User Logged On!
     </div>
 </main>
