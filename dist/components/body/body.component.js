@@ -30,7 +30,9 @@ var BodyComponent = (function () {
             color: "red",
             hints: ["clue1", "clue2"]
         };
-        this.testservice.addCard(dummycard).subscribe(function (res) { console.log(res.status); });
+        this.cards.push({ color: "green", hints: ["Clue1", "Clue2"] });
+        //cards.push(dummycard);
+        //this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
     };
     BodyComponent.prototype.getCard = function () {
         var id = '583df202a09009384018ef86';

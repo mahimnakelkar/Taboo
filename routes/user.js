@@ -6,7 +6,7 @@ router.get('/', function(req, res) {
     console.log('user api hit');
     console.log(req.query);
 
-    if ( req.query && req.query['score'] || req.query['username'] || req.query['team'] )
+    if ( req.query && req.query['score'] || req.query['username'] || req.query['team'] || req.query['_id'] )
     {
         //
         console.log('looking');

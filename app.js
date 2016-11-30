@@ -22,7 +22,6 @@ var bodyParser = require('body-parser');
 var TeamRoute = require('./routes/team.js');
 var UserRoute = require('./routes/user.js');
 var CardRoute = require('./routes/card.js');
-var HintRoute = require('./routes/hint.js');
 
 
 // This application uses express as its web server
@@ -45,7 +44,6 @@ app.use(express.static(__dirname));
 app.use('/api/team', TeamRoute);
 app.use('/api/user', UserRoute);
 app.use('/api/card', CardRoute);
-app.use('/api/hint', HintRoute);
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();

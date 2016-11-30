@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var Card = require('../models/card.js');
-var Hint = require('../models/hint.js');
 
 router.get('/', function(req, res) {
     console.log('query: ');
     console.log(req.query);
 
-    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query)
+    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query)
     {
         Card.find(req.query, function(err, cards) {
 

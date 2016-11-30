@@ -1,4 +1,4 @@
-var models = ['team.js', 'user.js', 'card.js', 'hint.js'];
+var models = ['team.js', 'user.js', 'card.js'];
 module.exports = function() {
     var l = models.length;
     for (var i = 0; i < l; i++) {
