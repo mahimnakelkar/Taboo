@@ -3,10 +3,14 @@ var router = express.Router();
 var User = require('../models/user.js');
 
 router.get('/', function(req, res) {
+    console.log('user api hit');
     console.log(req.query);
 
     if ( req.query && req.query['score'] || req.query['username'] || req.query['team'] )
     {
+        //
+        console.log('looking');
+        //
         User.find( req.query, function (err, users) {
 
             if (err) return res.send().status(500);
@@ -26,6 +30,8 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req,res) {
+
+    console.log('newuser post');
 
     var newuser = new User(req.body);
 
