@@ -26,8 +26,8 @@ export class BodyComponent{
 	 		color: "red",
 	 		hints: ["clue1","clue2"]
 	 	}
-		
-		cards.push(dummycard);
+		this.cards.push({color:"green",hints:["Clue1","Clue2"]});
+		//cards.push(dummycard);
 	 	//this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
 	 }
 
