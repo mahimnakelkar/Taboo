@@ -3,6 +3,8 @@ var router = express.Router();
 var Card = require('../models/card.js');
 
 router.get('/', function(req, res) {
+    console.log('query: ');
+    console.log(req.query);
 
     if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query)
     {
@@ -24,7 +26,12 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+
+    console.log('post card');
+    console.log(req.body);
     var newcard = new Card(req.body);
+
+    console.log(newcard);
 
     newcard.save(function(err, user) {
 

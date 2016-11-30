@@ -15,12 +15,13 @@ var newuser_component_1 = require('../newuser/newuser.component');
 var body_component_1 = require('../body/body.component');
 var login_component_1 = require('../login/login.component');
 var http_1 = require('@angular/http');
+var forms_1 = require('@angular/forms');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule],
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule],
             declarations: [app_component_1.AppComponent, newuser_component_1.NewUserComponent, body_component_1.BodyComponent, login_component_1.LoginComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: []

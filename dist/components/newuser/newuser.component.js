@@ -13,13 +13,23 @@ var newuser_component_service_1 = require('./newuser.component.service');
 var NewUserComponent = (function () {
     function NewUserComponent(userservice) {
         this.userservice = userservice;
+        this.testval = "hello";
     }
     NewUserComponent.prototype.addUser = function () {
+        console.log('in user component');
+        console.log(this.username);
         var user = {
             username: 'eric',
             password: 'bond' //this.password
         };
-        this.userservice.addUser(user);
+        this.userservice.addUser(user).subscribe(function (res) {
+            console.log(res);
+        });
+    };
+    NewUserComponent.prototype.getUser = function () {
+        this.userservice.getUserByUsername('eric').subscribe(function (res) {
+            console.log(res);
+        });
     };
     NewUserComponent = __decorate([
         core_1.Component({

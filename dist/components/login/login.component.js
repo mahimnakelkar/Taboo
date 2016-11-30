@@ -12,6 +12,9 @@ var core_1 = require('@angular/core');
 var LoginComponent = (function () {
     function LoginComponent() {
     }
+    LoginComponent.prototype.login = function () {
+        console.log('in the login component');
+    };
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'login-user',

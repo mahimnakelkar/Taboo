@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
 })
 
 export class LoginComponent{
-
+	login() {
+		console.log('in the login component');
+		
+	}
 }
