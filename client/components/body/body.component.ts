@@ -25,8 +25,10 @@ export class BodyComponent{
 	 	var dummycard = {
 	 		color: "red",
 	 		hints: ["clue1","clue2"]
-	 	}	 	
-	 	this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
+	 	}
+		
+		cards.push(dummycard);
+	 	//this.testservice.addCard(dummycard).subscribe(res => {console.log(res.status)});
 	 }
 
 	 getCard() {
