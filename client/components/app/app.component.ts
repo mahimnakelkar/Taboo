@@ -39,7 +39,7 @@ export class AppComponent {
 
 	logout() {
 		this.loginStatus = 'false';
-		this.page = "login";
+		this.page = "main";
 	}
 	
 }

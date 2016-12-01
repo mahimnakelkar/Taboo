@@ -32,7 +32,7 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.logout = function () {
         this.loginStatus = 'false';
-        this.page = "login";
+        this.page = "main";
     };
     AppComponent = __decorate([
         core_1.Component({

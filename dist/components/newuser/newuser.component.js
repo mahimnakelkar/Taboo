@@ -23,22 +23,18 @@ var NewUserComponent = (function () {
         this.user = { username: "", password: "", email: "" };
     }
     NewUserComponent.prototype.addUser = function () {
-        if (this.user.password == "" || this.user.username == "" || this.user.email == "")
+        if (this.password == "" || this.username == "" || this.email == "")
             return;
         this.loginStatus = true;
         this.loginEmitter.emit(this.loginStatus);
-        console.log('in user component');
-        console.log(this.username);
         this.user = {
-            username: "eric",
-            password: "bond",
-            email: 'eric@bond.com'
+            username: this.username,
+            password: this.password,
+            email: this.email
         };
-        /*
-        this.userservice.addUser(this.user).subscribe(res => {
+        this.userservice.addUser(this.user).subscribe(function (res) {
             console.log(res);
         });
-        */
     };
     NewUserComponent.prototype.getUser = function () {
         this.userservice.getUserByUsername('eric').subscribe(function (res) {
