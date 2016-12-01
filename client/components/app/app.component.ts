@@ -28,12 +28,16 @@ export class AppComponent {
 	}
 
 	changeLogin(loginStatus: boolean) {
-		if(loginStatus == true) this.loginStatus = 'true';
+		if(loginStatus == true) {
+			this.loginStatus = 'true';
+			this.page = "profile"
+		}
 		else this.loginStatus = 'false';
 	}
 
 	logout() {
 		this.loginStatus = 'false';
+		this.page = "login";
 	}
 	
 }

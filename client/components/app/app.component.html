@@ -22,7 +22,7 @@
 		        		Logout
 		       	 	</span>
 
-		       	 	<span class="navbar-brand login click"> 
+		       	 	<span (click) = "changePage('profile')" class="navbar-brand login click"> 
 		        		My Profile
 		       	 	</span>
 		       	</div>
@@ -44,7 +44,7 @@
     	<login-user>	</login-user>
     </div>
 
-    <div *ngIf="loginStatus == 'true'">
+    <div *ngIf="loginStatus == 'true' && page == 'profile'">
     	<profile> </profile>
     </div>
 </main>
