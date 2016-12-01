@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {NewUserComponent} from '../newuser/newuser.component';
 import {EventEmitter} from '@angular/core';
 
-
+declare var w3IncludeHTML: any;
 
 @Component({
 	selector: "taboo-app",
@@ -14,6 +14,8 @@ import {EventEmitter} from '@angular/core';
 
 export class AppComponent {
 	
+	
+
 	page = "main";
 	loginStatus = 'false';
 	currentUser = {
