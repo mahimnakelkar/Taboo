@@ -1,0 +1,32 @@
+.profile-text {
+  color:black;
+}
+
+.heading-text {
+  text-align: center;
+}
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 2px;
+}
+
+.container {
+  width: auto;
+  color: black;
+  margin: auto;
+}
+
+.profile-image {
+  -webkit-user-select:none; 
+  display:block; 
+  margin:auto;
+}
+.panel {
+  margin: auto;
+}

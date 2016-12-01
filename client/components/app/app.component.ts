@@ -16,6 +16,11 @@ export class AppComponent {
 	
 	page = "main";
 	loginStatus = 'false';
+	currentUser = {
+		username: "",
+		email: ""
+	}
+
 
 	changePage(state="main") {
 		this.page = state;
@@ -25,7 +30,6 @@ export class AppComponent {
 	changeLogin(loginStatus: boolean) {
 		if(loginStatus == true) this.loginStatus = 'true';
 		else this.loginStatus = 'false';
-		console.log(this.loginStatus + "Yo");
 	}
 
 	logout() {

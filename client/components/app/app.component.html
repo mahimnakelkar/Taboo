@@ -4,6 +4,7 @@
 		    <div class = "navbar-header">			
 		        <span>
 		            <span (click) ="changePage('main')" class="navbar-brand click"> Taboo </span>
+		            <span class="navbar-brand click"> Game Rules </span>
 		        </span>
 		        <div *ngIf="loginStatus == 'false'">
 		        	<span (click) = "changePage('signup')" class="navbar-brand login click"> 
@@ -16,8 +17,13 @@
 		       	</div>
 
 		       	<div *ngIf="loginStatus == 'true'">
+		       		
 		       		<span (click) = "logout()" class="navbar-brand login click"> 
 		        		Logout
+		       	 	</span>
+
+		       	 	<span class="navbar-brand login click"> 
+		        		My Profile
 		       	 	</span>
 		       	</div>
 
@@ -39,6 +45,6 @@
     </div>
 
     <div *ngIf="loginStatus == 'true'">
-    	User Logged On!
+    	<profile> </profile>
     </div>
 </main>
