@@ -15,7 +15,7 @@ export class NewUserComponent{
 	username: string;
 	password: string;
 	testval: string = "hello";
-	user = {username:"",password:""};
+	user:{username:string,password:string};
 	loginStatus: boolean = false;
 
 	loginEmitter: EventEmitter<boolean> = new EventEmitter();
@@ -24,9 +24,12 @@ export class NewUserComponent{
 		this.loginEmitter = new EventEmitter();
 		this.loginStatus = false;
 		this.loginEmitter.emit(this.loginStatus);
+		this.user = {username:"",password:""};
+
 	}
 
 	addUser(){
+		if(this.user.password == "" || this.user.username == "") return;
 		this.loginStatus = true;
 
 		this.loginEmitter.emit(this.loginStatus);
@@ -34,8 +37,8 @@ export class NewUserComponent{
 		console.log('in user component');
 		console.log(this.username);
 		this.user = {
-			username: 'eric',//this.username,
-			password: 'bond'//this.password
+			username:"eric",//this.username,
+			password:"bond"//this.password
 		};
 		/*
 		this.userservice.addUser(this.user).subscribe(res => {
