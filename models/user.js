@@ -5,6 +5,7 @@ var UserSchema = new Schema({
     score   : Number,
     username: String,
     password: String,
+    email   : String,
     team    : { type: Schema.Types.ObjectId, ref: 'Team' }
 });
 

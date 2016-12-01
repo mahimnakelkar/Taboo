@@ -1,22 +1,19 @@
-<form #form="ngForm" >
-	
 	<div class="form-group">
 		<input type="text" class="form-control" name="email" placeholder="Email Address" required
-		[(ngModel)]="user.email" #email="ngModel">
+		[(ngModel)]="email" >
 	</div>
 
 	<div class="form-group">
 		<input type="text" class="form-control" name="username" placeholder="Username" required
-		[(ngModel)]="user.username" #username="ngModel">
+		[(ngModel)]="username" >
 	</div>
 
 	<div class="form-group">
 		<input type="password" class="form-control" name="password" placeholder="Password" required
-		[(ngModel)]="user.password" #password="ngModel">
+		[(ngModel)]="password">
 	</div>
 
-	<button  type="submit" class="btn btn-lg btn-block btn-primary"
+	<button   class="btn btn-lg btn-block btn-primary"
 		(click)="addUser()">
 		Create User
 	</button> 
-</form>

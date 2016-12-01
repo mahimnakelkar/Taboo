@@ -9,7 +9,7 @@ export class newuserservice {
 	addUser(user: any) {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		return this.http.post("api/user", JSON.stringify(user), { headers: headers}).map(response => response.json());
+		return this.http.post("api/user", JSON.stringify(user), { headers: headers})//.map(response => response.json());
 	}
 
 	getUserByUsername(username: string){

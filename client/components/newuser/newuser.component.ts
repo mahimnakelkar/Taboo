@@ -11,7 +11,7 @@ import {EventEmitter} from '@angular/core';
 
 export class NewUserComponent{ 
 	
-
+	email:string;
 	username: string;
 	password: string;
 	testval: string = "hello";
@@ -29,23 +29,18 @@ export class NewUserComponent{
 	}
 
 	addUser(){
-		if(this.user.password == "" || this.user.username == "" || this.user.email == "") return;
+		if(this.password == "" || this.username == "" || this.email == "") return;
 		this.loginStatus = true;
-
 		this.loginEmitter.emit(this.loginStatus);
-
-		console.log('in user component');
-		console.log(this.username);
 		this.user = {
-			username:"eric",//this.username,
-			password:"bond",//this.password
-			email:'eric@bond.com'
+			username: this.username,
+			password: this.password,
+			email:this.email
 		};
-		/*
+		
 		this.userservice.addUser(this.user).subscribe(res => {
 			console.log(res);
 		});
-		*/
 	}	
 
 	getUser() {
