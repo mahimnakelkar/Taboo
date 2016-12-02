@@ -17,14 +17,24 @@ var NewUserComponent = (function () {
         this.testval = "hello";
         this.loginStatus = false;
         this.loginEmitter = new core_2.EventEmitter();
+        this.currentUserEmitter = new core_2.EventEmitter();
         this.loginEmitter = new core_2.EventEmitter();
+        this.currentUserEmitter = new core_2.EventEmitter();
         this.loginStatus = false;
         this.loginEmitter.emit(this.loginStatus);
         this.user = { username: "", password: "", email: "" };
+        this.currentUser = { name: "", username: "", email: "" };
+        this.currentUserEmitter.emit(this.currentUser);
     }
     NewUserComponent.prototype.addUser = function () {
         if (this.password == "" || this.username == "" || this.email == "")
             return;
+        this.currentUser = {
+            name: "Test",
+            username: this.username,
+            email: this.email
+        };
+        this.currentUserEmitter.emit(this.currentUser);
         this.loginStatus = true;
         this.loginEmitter.emit(this.loginStatus);
         this.user = {
@@ -46,7 +56,7 @@ var NewUserComponent = (function () {
             selector: 'new-user',
             templateUrl: 'client/components/newuser/newuser.component.html',
             providers: [newuser_component_service_1.newuserservice],
-            outputs: ['loginEmitter', 'loginStatus']
+            outputs: ['loginEmitter', 'loginStatus', 'currentUserEmitter', 'currentUser']
         }), 
         __metadata('design:paramtypes', [newuser_component_service_1.newuserservice])
     ], NewUserComponent);
