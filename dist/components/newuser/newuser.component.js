@@ -30,7 +30,7 @@ var NewUserComponent = (function () {
         if (this.password == "" || this.username == "" || this.email == "")
             return;
         this.currentUser = {
-            name: "Test",
+            name: this.name,
             username: this.username,
             email: this.email
         };

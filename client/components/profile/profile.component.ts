@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AppComponent } from '../app/app.component';
 @Component({
     selector: 'profile',
@@ -8,5 +8,6 @@ import { AppComponent } from '../app/app.component';
 
 
 export class ProfileComponent{
-	
+	@Input() currentUser:{username:string,name:string,email:string};
+
 }

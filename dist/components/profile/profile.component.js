@@ -12,6 +12,10 @@ var core_1 = require('@angular/core');
 var ProfileComponent = (function () {
     function ProfileComponent() {
     }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ProfileComponent.prototype, "currentUser", void 0);
     ProfileComponent = __decorate([
         core_1.Component({
             selector: 'profile',
