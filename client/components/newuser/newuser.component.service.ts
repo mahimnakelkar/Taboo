@@ -9,10 +9,33 @@ export class newuserservice {
 	addUser(user: any) {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		return this.http.post("api/user", JSON.stringify(user), { headers: headers})//.map(response => response.json());
+		var x = this.http.post("api/user", JSON.stringify(user), { headers: headers})//.map(response => response.json());
+		if(x){				
+			x.subscribe(res => {})
+		}		
 	}
 
-	getUserByUsername(username: string){
-		return this.http.get("/api/user/?username=" + username).map(response => response.json());
+	getUserByUsername(username: string): any[]{
+		var x = this.http.get("/api/user/?username=" + username).map(response => response.json());
+		if (x){
+			x.subscribe(res => {
+				return res;
+			})
+		}
+		return [];
+	}
+
+	getUserByEmail(email: string): any[]{
+		var x = this.http.get("/api/user/?email=" + email).map(response => response.json());
+		console.log('x');
+		console.log(x);
+		if (x){
+			x.subscribe(res => {
+				console.log('res');
+				console.log(res);
+				return res;
+			})
+		}
+		return [];
 	}
 }

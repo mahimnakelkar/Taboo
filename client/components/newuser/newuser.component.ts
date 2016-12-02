@@ -15,7 +15,7 @@ export class NewUserComponent{
 	username: string;
 	password: string;
 	testval: string = "hello";
-	user:{username:string,password:string,email:string};
+	user:{username:string,password:string,email:string,name:string};
 	loginStatus: boolean = false;
 	
 	currentUser:{name:string, username:string, email:string};
@@ -27,7 +27,7 @@ export class NewUserComponent{
 		this.currentUserEmitter = new EventEmitter();
 		this.loginStatus = false;
 		this.loginEmitter.emit(this.loginStatus);
-		this.user = {username:"",password:"",email:""};
+		this.user = {username:"",password:"",email:"",name:""};
 		this.currentUser = {name:"", username:"", email:""};
 		this.currentUserEmitter.emit(this.currentUser);
 
@@ -50,19 +50,19 @@ export class NewUserComponent{
 		this.user = {
 			username: this.username,
 			password: this.password,
-			email:this.email
+			email:this.email,
+			name:this.name
 		};
 		
 		
 
-		this.userservice.addUser(this.user).subscribe(res => {
-			console.log(res);
-		});
-	}	
+		
+		this.userservice.addUser(this.user);
 
-	getUser() {
-		this.userservice.getUserByUsername('eric').subscribe(res =>{
-			console.log(res);
-		});
-	}
+		var x = this.userservice.getUserByUsername(this.user.username);
+		console.log()
+		console.log(x);
+		var y = this.userservice.getUserByEmail(this.user.email);
+		console.log(y);
+	}	
 }
