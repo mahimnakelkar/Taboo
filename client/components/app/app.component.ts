@@ -9,7 +9,6 @@ declare var w3IncludeHTML: any;
     templateUrl: 'client/components/app/app.component.html',
     styleUrls:["client/components/app/app.component.css"],
     inputs: ['loginStatus','user'],
-  // outputs:['userEmitter','currentUser']
 
 })
 
