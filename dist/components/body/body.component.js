@@ -19,6 +19,7 @@ var BodyComponent = (function () {
     function BodyComponent(testservice) {
         this.testservice = testservice;
         this.cards = [
+            { color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] },
             { color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
         ];
     }
@@ -34,6 +35,12 @@ var BodyComponent = (function () {
     BodyComponent.prototype.getColor = function (card) {
         if (card === void 0) { card = { color: "green" }; }
         return card.color;
+    };
+    BodyComponent.prototype.submitAnswer = function (card, answer) {
+        console.log("Checking answer");
+        console.log(card.id + " " + answer);
+        this.cards.pop();
+        // Eric Get On to making the delete service!!
     };
     BodyComponent = __decorate([
         core_1.Component({
