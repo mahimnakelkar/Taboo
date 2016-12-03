@@ -35,7 +35,7 @@
 
 <main>
 	<div *ngIf="page == 'main' && loginStatus == 'true'">
-    	<main-app> </main-app>
+    	<main-app [currentUser] = "currentUser"> </main-app>
     </div>
     
     <div *ngIf="page == 'signup' ">

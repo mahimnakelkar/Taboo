@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { bodycomponentservice } from './body.component.test.service';
 
 class card{
@@ -14,6 +14,8 @@ class card{
 })
 
 export class BodyComponent{
+	@Input() currentUser:{username:string,name:string,email:string,team:string};
+
 	 cards = [
 	 	{_id:"1", answer:"ans", color:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
 	 ];
@@ -29,6 +31,7 @@ export class BodyComponent{
 	 			this.cards.push(card);
 	 		})
 	 	});
+	 	console.log(this.currentUser);
 	 } 
 	 
 	 getColor(card = {color:"green"}) {

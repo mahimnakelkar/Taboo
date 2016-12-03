@@ -30,6 +30,7 @@ var BodyComponent = (function () {
                 _this.cards.push(card);
             });
         });
+        console.log(this.currentUser);
     };
     BodyComponent.prototype.getColor = function (card) {
         if (card === void 0) { card = { color: "green" }; }
@@ -54,6 +55,10 @@ var BodyComponent = (function () {
             inputs.value = null;
         }
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], BodyComponent.prototype, "currentUser", void 0);
     BodyComponent = __decorate([
         core_1.Component({
             selector: 'main-app',
