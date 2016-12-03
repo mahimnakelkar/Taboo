@@ -7,7 +7,8 @@ var CardSchema = new Schema({
     answer  : String,
     hints   : [String],
     color   : String,
-    active  : Boolean
+    active  : Boolean,
+    team    : String
 });
 
 module.exports = mongoose.model('Card', CardSchema);

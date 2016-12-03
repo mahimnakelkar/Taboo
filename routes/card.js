@@ -29,7 +29,7 @@ router.post('/', function(req, res) {
 
     req.query = req.body;
 
-    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query || 'active' in req.query)
+    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query || 'active' in req.query || 'team' in req.query)
     {
         Card.findOne({"_id" : req.query['_id'] }, function(err, card) {
             if (!card) {
