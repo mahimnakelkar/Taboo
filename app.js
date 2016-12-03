@@ -33,11 +33,11 @@ app.use('/api/user', UserRoute);
 app.use('/api/card', CardRoute);
 
 app.get('/success', function(req, res, err) {
-    res.json({ "status" : true });
+    res.json({ "success" : true });
 });
 
 app.get('/error', function(req, res, err) {
-    res.json({ "status" : false });
+    res.json({ "success" : false });
 });
 
 app.post('/signup', passport.authenticate('local-signup', {
