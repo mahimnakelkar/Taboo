@@ -10,20 +10,18 @@ import {EventEmitter} from '@angular/core';
 })
 
 export class NewUserComponent{ 
-	
-	team:string
-
 	name:string;
 	email:string;
 	username: string;
 	password: string;
+	team: string;
 	testval: string = "hello";
 	user:{username:string,password:string,email:string,name:string,team:string};
 	loginStatus: boolean = false;
 	
-	currentUser:{name:string, username:string, email:string,team:string};
+	currentUser:{name:string, username:string, email:string};
 	loginEmitter: EventEmitter<boolean> = new EventEmitter();
-	currentUserEmitter: EventEmitter<{username:string,name:string,email:string,team:string }> = new EventEmitter();
+	currentUserEmitter: EventEmitter<{username:string,name:string,email:string }> = new EventEmitter();
 
 	constructor(private userservice: newuserservice){
 		this.loginEmitter = new EventEmitter();
@@ -31,26 +29,28 @@ export class NewUserComponent{
 		this.loginStatus = false;
 		this.loginEmitter.emit(this.loginStatus);
 		this.user = {username:"",password:"",email:"",name:"",team:""};
-		this.currentUser = {name:"", username:"", email:"",team:""};
+		this.currentUser = {name:"", username:"", email:""};
 		this.currentUserEmitter.emit(this.currentUser);
 
 	}
 
 	addUser(){
 		if(this.password == "" || this.username == "" || this.email == "") return;
-		var rand = Math.floor(Math.random() * (2));
-		if(rand == 0) this.team = "Red";
-		else this.team = "Blue";
-
+		
 		this.currentUser = {
 			name: this.name,
 			username: this.username,
-			email:this.email,
-			team:this.team
+			email:this.email
 		}
 
 		this.currentUserEmitter.emit(this.currentUser);
 		
+		if(Math.random() %2){
+			this.team = "red";
+		}
+		else{
+			this.team = "blue";
+		}
 
 		this.loginStatus = true;
 		this.loginEmitter.emit(this.loginStatus);
@@ -59,18 +59,8 @@ export class NewUserComponent{
 			password: this.password,
 			email:this.email,
 			name:this.name,
-			team:this.team
-		};
-		
-		
-
-		
-		this.userservice.addUser(this.user);
-
-		var x = this.userservice.getUserByUsername(this.user.username);
-		console.log()
-		console.log(x);
-		var y = this.userservice.getUserByEmail(this.user.email);
-		console.log(y);
+			team:this.team			
+		};		
+		this.userservice.addUser(this.user);	
 	}	
 }
