@@ -45,8 +45,7 @@ app.post('/signup', passport.authenticate('local-signup', {
 
 app.post('/login', passport.authenticate('local-login', {
     successRedirect : '/success',
-    failureRedirect : '/login',
-    failureFlash    : true
+    failureRedirect : '/error'
 }));
 
 app.listen(appEnv.port, '0.0.0.0', function() {
