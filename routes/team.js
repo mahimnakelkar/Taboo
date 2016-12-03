@@ -28,11 +28,16 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 
+    console.log(req.body);
+
     var newteam = new Team(req.body);
 
+    console.log(newteam);
     newteam.save(function(err, team) {
 
         if (err) return res.send().status(500);
+
+        else res.send().status(200);
     });
 });
 
@@ -44,12 +49,12 @@ router.delete('/', function(req, res) {
 'name' in req.query || 'color' in req.query || '_id' in req.query)
     {
         Team.find(req.query).remove().exec();
-        res.send(teams).status(200);
+        res.send().status(200);
     }
     else
     {
         Team.find({}).remove().exec();
-        res.send(teams).status(200);
+        res.send().status(200);
     }
 
 });
