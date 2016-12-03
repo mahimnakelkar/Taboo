@@ -3,7 +3,6 @@ var router = express.Router();
 var Card = require('../models/card.js');
 
 router.get('/', function(req, res) {
-    console.log(req.query);
 
     if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query)
     {
@@ -28,16 +27,29 @@ router.post('/', function(req, res) {
 
     var newcard = new Card(req.body);
 
-    console.log(newcard);
+    req.query = req.body;
 
-    newcard.save(function(err, user) {
+    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query || 'active' in req.query || 'team' in req.query)
+    {
+        Card.findOne({"_id" : req.query['_id'] }, function(err, card) {
+            if (!card) {
+                newcard.save(function(err, card) {
 
-        if (err) return res.send().status(500);
+                    if (err) return res.send().status(500);
 
-        res.send().status(200);
+                    res.send().status(200);
 
-    });
+                });
+            }
+            else {
+                card.update(req.query, function(err, card) {
+                    if (err) return res.send().status(500);
 
+                    res.send().status(200);
+                });
+            }
+        });
+    }
 });
 
 router.delete('/', function(req, res) {

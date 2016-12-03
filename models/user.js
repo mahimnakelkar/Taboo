@@ -8,7 +8,7 @@ var UserSchema = new Schema({
     username: String,
     password: String,
     email   : String,
-    team    : { type: Schema.Types.ObjectId, ref: 'Team' }
+    team    : String
 });
 
 UserSchema.methods.generateHash = function(password) {

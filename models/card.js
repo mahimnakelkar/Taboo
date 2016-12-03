@@ -6,7 +6,9 @@ var CardSchema = new Schema({
     lon     : Number,
     answer  : String,
     hints   : [String],
-    color   : String
+    color   : String,
+    active  : Boolean,
+    team    : String
 });
 
 module.exports = mongoose.model('Card', CardSchema);
