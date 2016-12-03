@@ -15,7 +15,7 @@ class card{
 
 export class BodyComponent{
 	 cards = [
-	 	{color:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
+	 	{_id:"1", answer:"ans", color:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
 	 ];
 	 answer:string;
 
@@ -35,10 +35,26 @@ export class BodyComponent{
 	 	return card.color;
 	 }
 
-	 submitAnswer(card:any, answer:string) {
+	 submitAnswer(card:any, answer:string, inputs:HTMLInputElement) {
 	 	console.log("Checking answer");
-	 	console.log(card.id + " " + answer);
-	 	// Eric Get On to making the delete service!!
+	 	console.log(card._id + " " + answer);
+
+	 	var index = 0;
+	 	for(var i = 0; i<this.cards.length;i++) {
+	 		if(this.cards[i]._id == card._id) {
+	 			console.log("Card Id Found");
+	 			index = i;
+	 			break;
+	 		}
+	 	}
+	 	inputs.value = null;
+	 	
+	 	if(answer.toLowerCase() == card.answer.toLowerCase()) {
+	 		answer = "";
+	 		this.cards[index] = this.cards[0];
+	 		this.cards.shift();
+	 		inputs.value = null;
+	 	}
 	 }
 
 	 constructor(private testservice: bodycomponentservice){}

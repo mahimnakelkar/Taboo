@@ -19,7 +19,7 @@ var BodyComponent = (function () {
     function BodyComponent(testservice) {
         this.testservice = testservice;
         this.cards = [
-            { color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
+            { _id: "1", answer: "ans", color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
         ];
     }
     BodyComponent.prototype.ngOnInit = function () {
@@ -35,10 +35,24 @@ var BodyComponent = (function () {
         if (card === void 0) { card = { color: "green" }; }
         return card.color;
     };
-    BodyComponent.prototype.submitAnswer = function (card, answer) {
+    BodyComponent.prototype.submitAnswer = function (card, answer, inputs) {
         console.log("Checking answer");
-        console.log(card.id + " " + answer);
-        // Eric Get On to making the delete service!!
+        console.log(card._id + " " + answer);
+        var index = 0;
+        for (var i = 0; i < this.cards.length; i++) {
+            if (this.cards[i]._id == card._id) {
+                console.log("Card Id Found");
+                index = i;
+                break;
+            }
+        }
+        inputs.value = null;
+        if (answer.toLowerCase() == card.answer.toLowerCase()) {
+            answer = "";
+            this.cards[index] = this.cards[0];
+            this.cards.shift();
+            inputs.value = null;
+        }
     };
     BodyComponent = __decorate([
         core_1.Component({

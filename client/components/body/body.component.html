@@ -17,9 +17,9 @@
 				<div class = "card" [style.background-color]="getColor(card)">
 					
 					<div class="inputDiv">
-						<input type = 'text' class='answerInput' [(ngModel)]="answer"/>
+						<input #inputs type = 'text' class='answerInput' [value] = 'answer' [(ngModel)]="answer"/>
 					</div>
-					<button (click)= "submitAnswer(card,answer)" class="btn btn-sm btn-block btn-default"> Answer </button>
+					<button (click)= "submitAnswer(card,answer,inputs)" class="btn btn-sm btn-block btn-default"> Answer </button>
 					
 				</div>
 			</div>
