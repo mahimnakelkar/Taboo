@@ -14,7 +14,7 @@ export class bodycomponentservice {
 	}
 	getTeamScore(team:string) {
 
-		//return this.http.get('api/team/?name='+ team.toLowerCase())
+		return this.http.get('api/team/?name='+ team.toLowerCase()).map(response => response.json());
 
 	}
 	getCardById(id: string){

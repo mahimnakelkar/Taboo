@@ -18,6 +18,10 @@ var card = (function () {
 var BodyComponent = (function () {
     function BodyComponent(testservice) {
         this.testservice = testservice;
+        this.redWidth = "50%";
+        this.blueWidth = "50%";
+        this.redTeamScore = 0;
+        this.blueTeamScore = 0;
         this.cards = [
             { _id: "1", answer: "ans", color: "blue", team: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
         ];
@@ -31,6 +35,30 @@ var BodyComponent = (function () {
             });
         });
         console.log(this.currentUser);
+        this.testservice.getTeamScore("red").subscribe(function (res) {
+            res.map(function (team) {
+                console.log("Red team is" + team.score);
+                _this.redTeamScore = team.score;
+            });
+        });
+        this.testservice.getTeamScore("blue").subscribe(function (res) {
+            res.map(function (team) {
+                _this.blueTeamScore = team.score;
+                if (_this.redTeamScore == 0 && _this.blueTeamScore != 0) {
+                    _this.blueWidth = "100%";
+                    _this.redWidth = "1%";
+                }
+                else if (_this.redTeamScore != 0 && _this.blueTeamScore == 0) {
+                    _this.blueWidth = "1%";
+                    _this.redWidth = "100%";
+                }
+                else {
+                    var totalScore = _this.blueTeamScore + _this.redTeamScore;
+                    _this.blueWidth = (_this.blueTeamScore / totalScore).toString() + "%";
+                    _this.redWidth = (_this.redTeamScore / totalScore).toString() + "%";
+                }
+            });
+        });
     };
     BodyComponent.prototype.getColor = function (card) {
         if (card === void 0) { card = { color: "green" }; }

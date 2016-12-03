@@ -21,7 +21,7 @@ var bodycomponentservice = (function () {
         return this.http.post('api/card/', JSON.stringify(dummycard), { headers: headers });
     };
     bodycomponentservice.prototype.getTeamScore = function (team) {
-        //return this.http.get('api/team/?name='+ team.toLowerCase())
+        return this.http.get('api/team/?name=' + team.toLowerCase()).map(function (response) { return response.json(); });
     };
     bodycomponentservice.prototype.getCardById = function (id) {
         return this.http.get('api/card/?_id=' + id).map(function (response) { return response.json(); });
