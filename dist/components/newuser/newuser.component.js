@@ -22,17 +22,23 @@ var NewUserComponent = (function () {
         this.currentUserEmitter = new core_2.EventEmitter();
         this.loginStatus = false;
         this.loginEmitter.emit(this.loginStatus);
-        this.user = { username: "", password: "", email: "", name: "" };
-        this.currentUser = { name: "", username: "", email: "" };
+        this.user = { username: "", password: "", email: "", name: "", team: "" };
+        this.currentUser = { name: "", username: "", email: "", team: "" };
         this.currentUserEmitter.emit(this.currentUser);
     }
     NewUserComponent.prototype.addUser = function () {
         if (this.password == "" || this.username == "" || this.email == "")
             return;
+        var rand = Math.floor(Math.random() * (2));
+        if (rand == 0)
+            this.team = "Red";
+        else
+            this.team = "Blue";
         this.currentUser = {
             name: this.name,
             username: this.username,
-            email: this.email
+            email: this.email,
+            team: this.team
         };
         this.currentUserEmitter.emit(this.currentUser);
         this.loginStatus = true;
@@ -41,7 +47,8 @@ var NewUserComponent = (function () {
             username: this.username,
             password: this.password,
             email: this.email,
-            name: this.name
+            name: this.name,
+            team: this.team
         };
         this.userservice.addUser(this.user);
         var x = this.userservice.getUserByUsername(this.user.username);

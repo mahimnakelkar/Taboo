@@ -10,36 +10,43 @@ import {EventEmitter} from '@angular/core';
 })
 
 export class NewUserComponent{ 
+	
+	team:string
+
 	name:string;
 	email:string;
 	username: string;
 	password: string;
 	testval: string = "hello";
-	user:{username:string,password:string,email:string,name:string};
+	user:{username:string,password:string,email:string,name:string,team:string};
 	loginStatus: boolean = false;
 	
-	currentUser:{name:string, username:string, email:string};
+	currentUser:{name:string, username:string, email:string,team:string};
 	loginEmitter: EventEmitter<boolean> = new EventEmitter();
-	currentUserEmitter: EventEmitter<{username:string,name:string,email:string }> = new EventEmitter();
+	currentUserEmitter: EventEmitter<{username:string,name:string,email:string,team:string }> = new EventEmitter();
 
 	constructor(private userservice: newuserservice){
 		this.loginEmitter = new EventEmitter();
 		this.currentUserEmitter = new EventEmitter();
 		this.loginStatus = false;
 		this.loginEmitter.emit(this.loginStatus);
-		this.user = {username:"",password:"",email:"",name:""};
-		this.currentUser = {name:"", username:"", email:""};
+		this.user = {username:"",password:"",email:"",name:"",team:""};
+		this.currentUser = {name:"", username:"", email:"",team:""};
 		this.currentUserEmitter.emit(this.currentUser);
 
 	}
 
 	addUser(){
 		if(this.password == "" || this.username == "" || this.email == "") return;
-		
+		var rand = Math.floor(Math.random() * (2));
+		if(rand == 0) this.team = "Red";
+		else this.team = "Blue";
+
 		this.currentUser = {
 			name: this.name,
 			username: this.username,
-			email:this.email
+			email:this.email,
+			team:this.team
 		}
 
 		this.currentUserEmitter.emit(this.currentUser);
@@ -51,7 +58,8 @@ export class NewUserComponent{
 			username: this.username,
 			password: this.password,
 			email:this.email,
-			name:this.name
+			name:this.name,
+			team:this.team
 		};
 		
 		

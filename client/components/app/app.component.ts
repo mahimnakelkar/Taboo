@@ -43,7 +43,7 @@ export class AppComponent {
 		else this.loginStatus = 'false';
 	}
 
-	changeCurrentUser(user:{username:string,email:string,name:string}) {
+	changeCurrentUser(user:{username:string,email:string,name:string,team:string}) {
 		this.currentUser = user;
 		console.log("User follows");
 		console.log(user);

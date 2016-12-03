@@ -8,6 +8,6 @@ import { AppComponent } from '../app/app.component';
 
 
 export class ProfileComponent{
-	@Input() currentUser:{username:string,name:string,email:string};
+	@Input() currentUser:{username:string,name:string,email:string,team:string};
 
 }
