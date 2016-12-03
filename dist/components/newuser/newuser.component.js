@@ -41,6 +41,12 @@ var NewUserComponent = (function () {
             team: this.team
         };
         this.currentUserEmitter.emit(this.currentUser);
+        if (Math.random() % 2) {
+            this.team = "red";
+        }
+        else {
+            this.team = "blue";
+        }
         this.loginStatus = true;
         this.loginEmitter.emit(this.loginStatus);
         this.user = {

@@ -25,7 +25,7 @@ export class BodyComponent{
 	 	this.testservice.getAllCards().subscribe(res =>
 	 	{
 	 		res.map((card:any)=>
-	 		{
+	 		{		 			
 	 			this.cards.push(card);
 	 		})
 	 	});

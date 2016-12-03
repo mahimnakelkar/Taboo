@@ -15,7 +15,10 @@ export class bodycomponentservice {
 	getCardById(id: string){
 		return this.http.get('api/card/?_id=' + id).map(response => response.json());
 	}
-	getAllCards(){
+	getAllCards(team: string){
+		if(team){
+			return this.http.get('api/card/?team=' + team).map(response => response.json());
+		}
 		return this.http.get('api/card/').map(response => response.json());
 	}
 }
