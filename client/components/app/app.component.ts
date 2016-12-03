@@ -8,8 +8,7 @@ declare var w3IncludeHTML: any;
 	selector: "taboo-app",
     templateUrl: 'client/components/app/app.component.html',
     styleUrls:["client/components/app/app.component.css"],
-    inputs: ['loginStatus','user'],
-
+    inputs: ['loginStatus','user','logonStatus']
 })
 
 export class AppComponent {

@@ -42,7 +42,7 @@
     	<new-user (currentUserEmitter) = "changeCurrentUser($event)" (loginEmitter) = "changeLogin($event)"> </new-user>
     </div>
     <div *ngIf="page == 'login'">
-    	<login-user>	</login-user>
+    	<login-user (logonEmitter)="changeLogin($event)">	</login-user>
     </div>
 
     <div *ngIf="loginStatus == 'true' && page == 'profile'">
