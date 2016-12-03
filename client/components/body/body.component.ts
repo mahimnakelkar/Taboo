@@ -17,14 +17,14 @@ export class BodyComponent{
 	@Input() currentUser:{username:string,name:string,email:string,team:string};
 
 	 cards = [
-	 	{_id:"1", answer:"ans", color:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
+	 	{_id:"1", answer:"ans", color:"blue",team:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
 	 ];
 	 answer:string;
 
 	ngOnInit()
 	{
 		this.cards.pop();
-	 	this.testservice.getAllCards().subscribe(res =>
+	 	this.testservice.getAllCards(this.currentUser.team).subscribe(res =>
 	 	{
 	 		res.map((card:any)=>
 	 		{		 			

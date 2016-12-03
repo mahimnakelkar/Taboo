@@ -25,7 +25,7 @@ var bodycomponentservice = (function () {
     };
     bodycomponentservice.prototype.getAllCards = function (team) {
         if (team) {
-            return this.http.get('api/card/?team=' + team).map(function (response) { return response.json(); });
+            return this.http.get('api/card/?team=' + team + '&active=true').map(function (response) { return response.json(); });
         }
         return this.http.get('api/card/').map(function (response) { return response.json(); });
     };

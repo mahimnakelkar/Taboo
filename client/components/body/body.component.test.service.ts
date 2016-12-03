@@ -17,7 +17,7 @@ export class bodycomponentservice {
 	}
 	getAllCards(team: string){
 		if(team){
-			return this.http.get('api/card/?team=' + team).map(response => response.json());
+			return this.http.get('api/card/?team=' + team+'&active=true').map(response => response.json());
 		}
 		return this.http.get('api/card/').map(response => response.json());
 	}

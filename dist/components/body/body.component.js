@@ -19,13 +19,13 @@ var BodyComponent = (function () {
     function BodyComponent(testservice) {
         this.testservice = testservice;
         this.cards = [
-            { _id: "1", answer: "ans", color: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
+            { _id: "1", answer: "ans", color: "blue", team: "blue", hints: ["Clue1", "Clue2", "Clue3", "Clue4"] }
         ];
     }
     BodyComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.cards.pop();
-        this.testservice.getAllCards().subscribe(function (res) {
+        this.testservice.getAllCards(this.currentUser.team).subscribe(function (res) {
             res.map(function (card) {
                 _this.cards.push(card);
             });
