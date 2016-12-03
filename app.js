@@ -1,55 +1,54 @@
-/*eslint-env node*/
-//------------------------------------------------------------------------------
-// node.js starter application for Bluemix
-//------------------------------------------------------------------------------
+var TeamRoute   = require('./routes/team.js');
+var UserRoute   = require('./routes/user.js');
+var CardRoute   = require('./routes/card.js');
 
-// Configuring mongodb for test use
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://root:password@ds111788.mlab.com:11788/taboo');
+var cfenv       = require('cfenv');
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+var morgan      = require('morgan');
+var bodyParser  = require('body-parser');
+var passport    = require('passport');
+var flash       = require('connect-flash');
+var session     = require('express-session');
 
-    console.log('connected to the database');
+var express     = require('express');
+var mongoose    = require('mongoose');
+var app         = express();
+var appEnv      = cfenv.getAppEnv();
 
-});
-
-require('./models/models.js')();
-
-var bodyParser = require('body-parser');
-
-var TeamRoute = require('./routes/team.js');
-var UserRoute = require('./routes/user.js');
-var CardRoute = require('./routes/card.js');
-
-
-// This application uses express as its web server
-// for more info, see: http://expressjs.com
-var express = require('express');
-
-// cfenv provides access to your Cloud Foundry environment
-// for more info, see: https://www.npmjs.com/package/cfenv
-var cfenv = require('cfenv');
-
-// create a new express server
-var app = express();
-
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
-// serve the files out of ./public as our main files
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use(session({ secret : 'taboo'}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(__dirname));
+
+require('./config/passport')(passport);
+require('./models/models')();
 
 app.use('/api/team', TeamRoute);
 app.use('/api/user', UserRoute);
 app.use('/api/card', CardRoute);
 
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
+app.get('/success', function(req, res, err) {
+    res.json({ "status" : true });
+});
 
-// start server on the specified port and binding host
+app.get('/error', function(req, res, err) {
+    res.json({ "status" : false });
+});
+
+app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/success',
+    failureRedirect: '/error'
+}));
+
+app.post('/login', passport.authenticate('local-login', {
+    successRedirect : '/success',
+    failureRedirect : '/login',
+    failureFlash    : true
+}));
+
 app.listen(appEnv.port, '0.0.0.0', function() {
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
+    console.log("server starting on " + appEnv.url);
 });
