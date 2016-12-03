@@ -14,6 +14,7 @@ var AppComponent = (function () {
         this.page = "main";
         this.loginStatus = 'false';
         this.currentUser = {
+            name: "",
             username: "",
             email: ""
         };
@@ -23,12 +24,18 @@ var AppComponent = (function () {
         this.page = state;
     };
     AppComponent.prototype.changeLogin = function (loginStatus) {
+        console.log("Change Login");
         if (loginStatus == true) {
             this.loginStatus = 'true';
             this.page = "profile";
         }
         else
             this.loginStatus = 'false';
+    };
+    AppComponent.prototype.changeCurrentUser = function (user) {
+        this.currentUser = user;
+        console.log("User follows");
+        console.log(user);
     };
     AppComponent.prototype.logout = function () {
         this.loginStatus = 'false';
@@ -39,7 +46,7 @@ var AppComponent = (function () {
             selector: "taboo-app",
             templateUrl: 'client/components/app/app.component.html',
             styleUrls: ["client/components/app/app.component.css"],
-            inputs: ['loginStatus']
+            inputs: ['loginStatus', 'user'],
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

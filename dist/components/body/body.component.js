@@ -35,6 +35,11 @@ var BodyComponent = (function () {
         if (card === void 0) { card = { color: "green" }; }
         return card.color;
     };
+    BodyComponent.prototype.submitAnswer = function (card, answer) {
+        console.log("Checking answer");
+        console.log(card.id + " " + answer);
+        // Eric Get On to making the delete service!!
+    };
     BodyComponent = __decorate([
         core_1.Component({
             selector: 'main-app',

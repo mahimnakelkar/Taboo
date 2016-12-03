@@ -17,36 +17,45 @@ var NewUserComponent = (function () {
         this.testval = "hello";
         this.loginStatus = false;
         this.loginEmitter = new core_2.EventEmitter();
+        this.currentUserEmitter = new core_2.EventEmitter();
         this.loginEmitter = new core_2.EventEmitter();
+        this.currentUserEmitter = new core_2.EventEmitter();
         this.loginStatus = false;
         this.loginEmitter.emit(this.loginStatus);
-        this.user = { username: "", password: "", email: "" };
+        this.user = { username: "", password: "", email: "", name: "" };
+        this.currentUser = { name: "", username: "", email: "" };
+        this.currentUserEmitter.emit(this.currentUser);
     }
     NewUserComponent.prototype.addUser = function () {
         if (this.password == "" || this.username == "" || this.email == "")
             return;
+        this.currentUser = {
+            name: this.name,
+            username: this.username,
+            email: this.email
+        };
+        this.currentUserEmitter.emit(this.currentUser);
         this.loginStatus = true;
         this.loginEmitter.emit(this.loginStatus);
         this.user = {
             username: this.username,
             password: this.password,
-            email: this.email
+            email: this.email,
+            name: this.name
         };
-        this.userservice.addUser(this.user).subscribe(function (res) {
-            console.log(res);
-        });
-    };
-    NewUserComponent.prototype.getUser = function () {
-        this.userservice.getUserByUsername('eric').subscribe(function (res) {
-            console.log(res);
-        });
+        this.userservice.addUser(this.user);
+        var x = this.userservice.getUserByUsername(this.user.username);
+        console.log();
+        console.log(x);
+        var y = this.userservice.getUserByEmail(this.user.email);
+        console.log(y);
     };
     NewUserComponent = __decorate([
         core_1.Component({
             selector: 'new-user',
             templateUrl: 'client/components/newuser/newuser.component.html',
             providers: [newuser_component_service_1.newuserservice],
-            outputs: ['loginEmitter', 'loginStatus']
+            outputs: ['loginEmitter', 'loginStatus', 'currentUserEmitter', 'currentUser']
         }), 
         __metadata('design:paramtypes', [newuser_component_service_1.newuserservice])
     ], NewUserComponent);

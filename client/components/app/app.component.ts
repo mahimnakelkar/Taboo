@@ -8,21 +8,25 @@ declare var w3IncludeHTML: any;
 	selector: "taboo-app",
     templateUrl: 'client/components/app/app.component.html',
     styleUrls:["client/components/app/app.component.css"],
-    inputs: ['loginStatus']
+    inputs: ['loginStatus','user'],
 
 })
 
 export class AppComponent {
 	
-	
-
 	page = "main";
 	loginStatus = 'false';
 	currentUser = {
+		name:"",
 		username: "",
 		email: ""
+
 	}
 
+	
+	constructor(){
+		
+	}
 
 	changePage(state="main") {
 		this.page = state;
@@ -30,11 +34,19 @@ export class AppComponent {
 	}
 
 	changeLogin(loginStatus: boolean) {
+		console.log("Change Login");
 		if(loginStatus == true) {
 			this.loginStatus = 'true';
-			this.page = "profile"
+			this.page = "profile";
+
 		}
 		else this.loginStatus = 'false';
+	}
+
+	changeCurrentUser(user:{username:string,email:string,name:string}) {
+		this.currentUser = user;
+		console.log("User follows");
+		console.log(user);
 	}
 
 	logout() {

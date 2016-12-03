@@ -18,10 +18,32 @@ var newuserservice = (function () {
     newuserservice.prototype.addUser = function (user) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post("api/user", JSON.stringify(user), { headers: headers }); //.map(response => response.json());
+        var x = this.http.post("api/user", JSON.stringify(user), { headers: headers }); //.map(response => response.json());
+        if (x) {
+            x.subscribe(function (res) { });
+        }
     };
     newuserservice.prototype.getUserByUsername = function (username) {
-        return this.http.get("/api/user/?username=" + username).map(function (response) { return response.json(); });
+        var x = this.http.get("/api/user/?username=" + username).map(function (response) { return response.json(); });
+        if (x) {
+            x.subscribe(function (res) {
+                return res;
+            });
+        }
+        return [];
+    };
+    newuserservice.prototype.getUserByEmail = function (email) {
+        var x = this.http.get("/api/user/?email=" + email).map(function (response) { return response.json(); });
+        console.log('x');
+        console.log(x);
+        if (x) {
+            x.subscribe(function (res) {
+                console.log('res');
+                console.log(res);
+                return res;
+            });
+        }
+        return [];
     };
     newuserservice = __decorate([
         core_1.Injectable(), 

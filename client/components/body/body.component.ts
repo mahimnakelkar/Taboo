@@ -17,6 +17,7 @@ export class BodyComponent{
 	 cards = [
 	 	{color:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
 	 ];
+	 answer:string;
 
 	ngOnInit()
 	{
@@ -33,5 +34,12 @@ export class BodyComponent{
 	 getColor(card = {color:"green"}) {
 	 	return card.color;
 	 }
+
+	 submitAnswer(card:any, answer:string) {
+	 	console.log("Checking answer");
+	 	console.log(card.id + " " + answer);
+	 	// Eric Get On to making the delete service!!
+	 }
+
 	 constructor(private testservice: bodycomponentservice){}
 }
