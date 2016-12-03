@@ -12,6 +12,11 @@ export class bodycomponentservice {
 		return this.http.post('api/card/', JSON.stringify(dummycard), {headers: headers});
 
 	}
+	getTeamScore(team:string) {
+
+		//return this.http.get('api/team/?name='+ team.toLowerCase())
+
+	}
 	getCardById(id: string){
 		return this.http.get('api/card/?_id=' + id).map(response => response.json());
 	}

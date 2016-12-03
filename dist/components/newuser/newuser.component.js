@@ -23,24 +23,24 @@ var NewUserComponent = (function () {
         this.loginStatus = false;
         this.loginEmitter.emit(this.loginStatus);
         this.user = { username: "", password: "", email: "", name: "", team: "" };
-        this.currentUser = { name: "", username: "", email: "" };
+        this.currentUser = { name: "", username: "", email: "", team: "" };
         this.currentUserEmitter.emit(this.currentUser);
     }
     NewUserComponent.prototype.addUser = function () {
         if (this.password == "" || this.username == "" || this.email == "")
             return;
+        var rand = Math.floor(Math.random() * (2));
+        if (rand == 0)
+            this.team = "Red";
+        else
+            this.team = "Blue";
         this.currentUser = {
             name: this.name,
             username: this.username,
-            email: this.email
+            email: this.email,
+            team: this.team
         };
         this.currentUserEmitter.emit(this.currentUser);
-        if (Math.random() % 2) {
-            this.team = "red";
-        }
-        else {
-            this.team = "blue";
-        }
         this.loginStatus = true;
         this.loginEmitter.emit(this.loginStatus);
         this.user = {

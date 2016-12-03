@@ -32,6 +32,8 @@ export class BodyComponent{
 	 		})
 	 	});
 	 	console.log(this.currentUser);
+
+	 	
 	 } 
 	 
 	 getColor(card = {color:"green"}) {

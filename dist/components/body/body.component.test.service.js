@@ -20,6 +20,9 @@ var bodycomponentservice = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.post('api/card/', JSON.stringify(dummycard), { headers: headers });
     };
+    bodycomponentservice.prototype.getTeamScore = function (team) {
+        //return this.http.get('api/team/?name='+ team.toLowerCase())
+    };
     bodycomponentservice.prototype.getCardById = function (id) {
         return this.http.get('api/card/?_id=' + id).map(function (response) { return response.json(); });
     };
