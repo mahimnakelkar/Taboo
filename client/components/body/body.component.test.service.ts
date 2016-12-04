@@ -29,4 +29,9 @@ export class bodycomponentservice {
 		console.log('no team')
 		return this.http.get('api/card/').map(response => response.json());
 	}
+	setActiveFalse(id:string){
+		var headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		this.http.post('api/card/?_id='+ id + '&active=false', JSON.stringify({_id:id,active:false}), {headers: headers}).subscribe(res=>{});
+	}
 }

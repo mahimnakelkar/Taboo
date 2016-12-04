@@ -35,6 +35,11 @@ var bodycomponentservice = (function () {
         console.log('no team');
         return this.http.get('api/card/').map(function (response) { return response.json(); });
     };
+    bodycomponentservice.prototype.setActiveFalse = function (id) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post('api/card/?_id=' + id + '&active=false', JSON.stringify({ _id: id, active: false }), { headers: headers }).subscribe(function (res) { });
+    };
     bodycomponentservice = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

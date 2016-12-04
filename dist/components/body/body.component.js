@@ -84,6 +84,7 @@ var BodyComponent = (function () {
             this.cards[index] = this.cards[0];
             this.cards.shift();
             inputs.value = null;
+            this.testservice.setActiveFalse(card._id);
         }
     };
     __decorate([
