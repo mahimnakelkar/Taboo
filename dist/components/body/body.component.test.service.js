@@ -27,9 +27,12 @@ var bodycomponentservice = (function () {
         return this.http.get('api/card/?_id=' + id).map(function (response) { return response.json(); });
     };
     bodycomponentservice.prototype.getAllCards = function (team) {
+        console.log(team);
         if (team) {
+            console.log('yes team');
             return this.http.get('api/card/?team=' + team + '&active=true').map(function (response) { return response.json(); });
         }
+        console.log('no team');
         return this.http.get('api/card/').map(function (response) { return response.json(); });
     };
     bodycomponentservice = __decorate([

@@ -33,6 +33,7 @@ export class BodyComponent{
 		this.cards.pop();
 	 	this.testservice.getAllCards(this.currentUser.team.toLowerCase()).subscribe(res =>
 	 	{
+	 		console.log(res)
 	 		res.map((card:any)=>
 	 		{		 			
 	 			this.cards.push(card);

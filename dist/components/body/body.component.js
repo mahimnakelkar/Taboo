@@ -32,7 +32,9 @@ var BodyComponent = (function () {
         console.log(this.currentUser);
         this.cards.pop();
         this.testservice.getAllCards(this.currentUser.team.toLowerCase()).subscribe(function (res) {
+            console.log(res);
             res.map(function (card) {
+                console.log('maps');
                 _this.cards.push(card);
             });
         });

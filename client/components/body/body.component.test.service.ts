@@ -21,9 +21,12 @@ export class bodycomponentservice {
 		return this.http.get('api/card/?_id=' + id).map(response => response.json());
 	}
 	getAllCards(team: string){
+		console.log(team)
 		if(team){
+			console.log('yes team')
 			return this.http.get('api/card/?team=' + team+'&active=true').map(response => response.json());
 		}
+		console.log('no team')
 		return this.http.get('api/card/').map(response => response.json());
 	}
 }
