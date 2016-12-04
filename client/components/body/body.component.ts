@@ -28,8 +28,10 @@ export class BodyComponent{
 
 	ngOnInit()
 	{
+		console.log("User in Body is");
+		console.log(this.currentUser);
 		this.cards.pop();
-	 	this.testservice.getAllCards(this.currentUser.team).subscribe(res =>
+	 	this.testservice.getAllCards(this.currentUser.team.toLowerCase()).subscribe(res =>
 	 	{
 	 		res.map((card:any)=>
 	 		{		 			

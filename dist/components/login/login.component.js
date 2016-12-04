@@ -47,7 +47,6 @@ var LoginComponent = (function () {
                         _this.logonEmitter.emit(_this.logonStatus);
                     });
                 });
-                _this.logonUserEmitter.emit(_this.logonUser);
             }
             else {
                 console.log('not verified');

@@ -58,7 +58,6 @@ export class LoginComponent{
 	 				})
 	 			});
 
-	 			this.logonUserEmitter.emit(this.logonUser);
 
 				
 			} else {

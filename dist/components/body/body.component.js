@@ -28,8 +28,10 @@ var BodyComponent = (function () {
     }
     BodyComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log("User in Body is");
+        console.log(this.currentUser);
         this.cards.pop();
-        this.testservice.getAllCards(this.currentUser.team).subscribe(function (res) {
+        this.testservice.getAllCards(this.currentUser.team.toLowerCase()).subscribe(function (res) {
             res.map(function (card) {
                 _this.cards.push(card);
             });
