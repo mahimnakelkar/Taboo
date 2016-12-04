@@ -111,3 +111,21 @@
 .blue{
 	background-color: blue;
 }
+
+.addButton {
+	position: fixed;
+	bottom: 80px;
+	right: 80px;
+}
+.btn-circle {
+	border-radius: 30px;
+}
+
+.box {
+	border:1px solid black;
+	position: fixed;
+	bottom: 150px;
+	right: 150px;
+	width:150px;
+
+}

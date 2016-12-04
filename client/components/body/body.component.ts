@@ -17,7 +17,7 @@ export class BodyComponent{
 	@Input() currentUser:{username:string,name:string,email:string,team:string};
 	redWidth = "50%";
 	blueWidth = "50%";
-
+	f_showAddCard = "false";
 	redTeamScore = 0;
 	blueTeamScore = 0;
 
@@ -25,6 +25,13 @@ export class BodyComponent{
 	 	{_id:"1", answer:"ans", color:"blue",team:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
 	 ];
 	 answer:string;
+	 
+	 clue1:string;
+	 clue2:string;
+	 clue3:string;
+	 ans:string;
+
+
 
 	ngOnInit()
 	{
@@ -108,6 +115,34 @@ export class BodyComponent{
 	 		inputs.value = null;
 	 		this.testservice.setActiveFalse(card._id);
 	 	}
+	 }
+
+
+	 showAddCard() {
+	 	if(this.f_showAddCard == "true")	this.f_showAddCard = "false";
+	 	else this.f_showAddCard = "true";
+	 	console.log(this.f_showAddCard);
+	 }
+
+	 addCard() {
+	 	var curr_team = "blue";
+	 	var card_color = "#26529E"
+	 	if(this.currentUser.team.toLowerCase() == "blue") {
+	 		curr_team = "red";
+	 		card_color = "#E04141";
+	 	}
+	 	
+	 	var card = {
+	 		hints:[this.clue1,this.clue2,this.clue3],
+	 		answer:this.ans,
+	 		active:true,
+	 		team:curr_team,
+	 		color:card_color,
+	 		lat:0,
+	 		lon:0
+
+	 	}
+	 	this.testservice.addCard(card);
 	 }
 
 	 constructor(private testservice: bodycomponentservice){}

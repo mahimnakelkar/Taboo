@@ -32,6 +32,7 @@ export class LoginComponent{
 	login() {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
+		
 		this.http.post('login', JSON.stringify({username:this.username,password:this.password}), {headers: headers}).map(response => response.json()).subscribe(res => {
 			if(res.success){
 			
