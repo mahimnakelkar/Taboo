@@ -28,17 +28,25 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 
-    console.log(req.body);
-
     var newteam = new Team(req.body);
+    if ( '_id' in req.body )
+    {
+        newteam.update(function(err, team) {
 
-    console.log(newteam);
-    newteam.save(function(err, team) {
+            if (err) return res.send().status(500);
 
-        if (err) return res.send().status(500);
+            else res.send().status(200);
+        });
+    }
+    else
+    {
+        newteam.save(function(err, team) {
 
-        else res.send().status(200);
-    });
+            if (err) return res.send().status(500);
+
+            else res.send().status(200);
+        });
+    }
 });
 
 router.delete('/', function(req, res) {
