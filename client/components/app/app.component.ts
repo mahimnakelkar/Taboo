@@ -18,7 +18,8 @@ export class AppComponent {
 	currentUser = {
 		name:"",
 		username: "",
-		email: ""
+		email: "",
+		team:""
 
 	}
 
@@ -51,6 +52,7 @@ export class AppComponent {
 	logout() {
 		this.loginStatus = 'false';
 		this.page = "main";
+		this.currentUser = {name:"",username: "", email: "", team:""};
 	}
 	
 }

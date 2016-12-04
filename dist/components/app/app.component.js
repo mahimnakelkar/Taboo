@@ -16,7 +16,8 @@ var AppComponent = (function () {
         this.currentUser = {
             name: "",
             username: "",
-            email: ""
+            email: "",
+            team: ""
         };
     }
     AppComponent.prototype.changePage = function (state) {
@@ -40,6 +41,7 @@ var AppComponent = (function () {
     AppComponent.prototype.logout = function () {
         this.loginStatus = 'false';
         this.page = "main";
+        this.currentUser = { name: "", username: "", email: "", team: "" };
     };
     AppComponent = __decorate([
         core_1.Component({
