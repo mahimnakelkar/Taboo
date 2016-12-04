@@ -32,6 +32,27 @@ export class bodycomponentservice {
 	setActiveFalse(id:string){
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		this.http.post('api/card/?_id='+ id + '&active=false', JSON.stringify({_id:id,active:false}), {headers: headers}).subscribe(res=>{});
+		this.http.post('api/card/', JSON.stringify({_id:id,active:false}), {headers: headers}).subscribe(res=>{});
 	}
+
+	incrementTeamScore(team:string){
+		var headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		this.getTeamScore(team).subscribe(res => {
+			var score = res;
+			this.http.post('api/team/', JSON.stringify({team:team,score:score+1}), {headers: headers}).subscribe(res=>{});
+		})
+	}
+
+	decrementTeamScore(team:string){
+		var headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		this.getTeamScore(team).subscribe(res => {
+			var score = res;
+			this.http.post('api/team/', JSON.stringify({team:team,score:score-2}), {headers: headers}).subscribe(res=>{});
+		})
+	}
+
+
+
 }
