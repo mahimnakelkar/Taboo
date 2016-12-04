@@ -9,7 +9,7 @@ export class bodycomponentservice {
 	addCard(dummycard: any) {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		return this.http.post('api/card/', JSON.stringify(dummycard), {headers: headers});
+		return this.http.post('api/card/', JSON.stringify(dummycard), {headers: headers}).subscribe(res => {});
 
 	}
 	getTeamScore(team:string) {

@@ -18,7 +18,7 @@ var bodycomponentservice = (function () {
     bodycomponentservice.prototype.addCard = function (dummycard) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('api/card/', JSON.stringify(dummycard), { headers: headers });
+        return this.http.post('api/card/', JSON.stringify(dummycard), { headers: headers }).subscribe(function (res) { });
     };
     bodycomponentservice.prototype.getTeamScore = function (team) {
         return this.http.get('api/team/?name=' + team.toLowerCase()).map(function (response) { return response.json(); });

@@ -34,3 +34,15 @@
 		</div>
 	</div>
 </div>
+
+<div class="box" *ngIf="f_showAddCard == 'true'">
+	<input type="text" placeholder="Clue 1" [value] = 'clue1' [(ngModel)]="clue1"/> <br>
+	<input type="text" placeholder="Clue 2" [value] = 'clue2' [(ngModel)]="clue2"/> <br>
+	<input type="text" placeholder="Clue 3" [value] = 'clue3' [(ngModel)]="clue3"/> <br>
+	<input type="text" placeholder="Answer" [value] = 'ans' [(ngModel)]="ans"/> <br>
+	<button (click)="addCard()" class="btn btn-sm btn-block btn-default"> Create Card </button>
+</div>
+
+<div class="addButton">
+	<button (click) ="showAddCard()" class="btn-lg btn-circle btn-primary"> <span class="glyphicon glyphicon-plus"> </span> </button>
+</div>

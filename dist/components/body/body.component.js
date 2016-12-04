@@ -20,6 +20,7 @@ var BodyComponent = (function () {
         this.testservice = testservice;
         this.redWidth = "50%";
         this.blueWidth = "50%";
+        this.f_showAddCard = "false";
         this.redTeamScore = 0;
         this.blueTeamScore = 0;
         this.cards = [
@@ -86,6 +87,31 @@ var BodyComponent = (function () {
             inputs.value = null;
             this.testservice.setActiveFalse(card._id);
         }
+    };
+    BodyComponent.prototype.showAddCard = function () {
+        if (this.f_showAddCard == "true")
+            this.f_showAddCard = "false";
+        else
+            this.f_showAddCard = "true";
+        console.log(this.f_showAddCard);
+    };
+    BodyComponent.prototype.addCard = function () {
+        var curr_team = "blue";
+        var card_color = "#26529E";
+        if (this.currentUser.team.toLowerCase() == "blue") {
+            curr_team = "red";
+            card_color = "#E04141";
+        }
+        var card = {
+            hints: [this.clue1, this.clue2, this.clue3],
+            answer: this.ans,
+            active: true,
+            team: curr_team,
+            color: card_color,
+            lat: 0,
+            lon: 0
+        };
+        this.testservice.addCard(card);
     };
     __decorate([
         core_1.Input(), 
