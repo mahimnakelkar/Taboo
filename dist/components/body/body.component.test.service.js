@@ -21,15 +21,18 @@ var bodycomponentservice = (function () {
         return this.http.post('api/card/', JSON.stringify(dummycard), { headers: headers });
     };
     bodycomponentservice.prototype.getTeamScore = function (team) {
-        //return this.http.get('api/team/?name='+ team.toLowerCase())
+        return this.http.get('api/team/?name=' + team.toLowerCase()).map(function (response) { return response.json(); });
     };
     bodycomponentservice.prototype.getCardById = function (id) {
         return this.http.get('api/card/?_id=' + id).map(function (response) { return response.json(); });
     };
     bodycomponentservice.prototype.getAllCards = function (team) {
+        console.log(team);
         if (team) {
+            console.log('yes team');
             return this.http.get('api/card/?team=' + team + '&active=true').map(function (response) { return response.json(); });
         }
+        console.log('no team');
         return this.http.get('api/card/').map(function (response) { return response.json(); });
     };
     bodycomponentservice = __decorate([

@@ -15,6 +15,11 @@ class card{
 
 export class BodyComponent{
 	@Input() currentUser:{username:string,name:string,email:string,team:string};
+	redWidth = "50%";
+	blueWidth = "50%";
+
+	redTeamScore = 0;
+	blueTeamScore = 0;
 
 	 cards = [
 	 	{_id:"1", answer:"ans", color:"blue",team:"blue", hints:["Clue1", "Clue2", "Clue3","Clue4"]}
@@ -23,9 +28,12 @@ export class BodyComponent{
 
 	ngOnInit()
 	{
+		console.log("User in Body is");
+		console.log(this.currentUser);
 		this.cards.pop();
-	 	this.testservice.getAllCards(this.currentUser.team).subscribe(res =>
+	 	this.testservice.getAllCards(this.currentUser.team.toLowerCase()).subscribe(res =>
 	 	{
+	 		console.log(res)
 	 		res.map((card:any)=>
 	 		{		 			
 	 			this.cards.push(card);
@@ -34,6 +42,45 @@ export class BodyComponent{
 	 	console.log(this.currentUser);
 
 	 	
+
+	 	this.testservice.getTeamScore("red").subscribe(res =>
+	 	{
+	 		res.map((team:any)=>
+	 		{		 			
+	 			console.log("Red team is" + team.score);
+	 			this.redTeamScore = team.score;
+	 		})
+	 	});
+
+	 	this.testservice.getTeamScore("blue").subscribe(res =>
+	 	{
+	 		res.map((team:any)=>
+	 		{		 			
+	 			this.blueTeamScore = team.score;
+	 			
+	 			if(this.redTeamScore == 0 && this.blueTeamScore != 0) {
+	 				this.blueWidth = "100%";
+	 				this.redWidth = "1%";
+	 			}
+	 			else if(this.redTeamScore != 0 && this.blueTeamScore == 0) {
+	 				this.blueWidth = "1%";
+	 				this.redWidth = "100%";
+	 			}
+	 			else {
+	 		
+	 				var totalScore = this.blueTeamScore + this.redTeamScore;
+
+	 				this.blueWidth = (this.blueTeamScore/totalScore).toString() + "%";
+	 				this.redWidth = (this.redTeamScore/totalScore).toString() + "%";
+	 			}
+
+	 		})
+	 	});
+
+	 	
+
+
+
 	 } 
 	 
 	 getColor(card = {color:"green"}) {

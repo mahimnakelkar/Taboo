@@ -4,7 +4,7 @@ var Card = require('../models/card.js');
 
 router.get('/', function(req, res) {
 
-    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query || 'team' in req.query)
+    if (req.query && 'lat' in req.query || 'lon' in req.query || 'answer' in req.query || 'hints' in req.query || 'color' in req.query || '_id' in req.query || 'team' in req.query || 'active' in req.query)
     {
         Card.find(req.query, function(err, cards) {
 

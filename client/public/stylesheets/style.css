@@ -69,6 +69,19 @@ th, td {
 	padding: 2px 20px;
 }
 
+.form-group{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
 .env-var {
 	text-align: right;
 	border-right: 1px solid #000;

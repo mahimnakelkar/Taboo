@@ -14,16 +14,19 @@ export class bodycomponentservice {
 	}
 	getTeamScore(team:string) {
 
-		//return this.http.get('api/team/?name='+ team.toLowerCase())
+		return this.http.get('api/team/?name='+ team.toLowerCase()).map(response => response.json());
 
 	}
 	getCardById(id: string){
 		return this.http.get('api/card/?_id=' + id).map(response => response.json());
 	}
 	getAllCards(team: string){
+		console.log(team)
 		if(team){
+			console.log('yes team')
 			return this.http.get('api/card/?team=' + team+'&active=true').map(response => response.json());
 		}
+		console.log('no team')
 		return this.http.get('api/card/').map(response => response.json());
 	}
 }
