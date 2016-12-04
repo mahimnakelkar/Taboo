@@ -17,9 +17,12 @@ var LoginComponent = (function () {
         this.http = http;
         this.logonEmitter = new core_2.EventEmitter();
         this.logonStatus = false;
+        this.logonUserEmitter = new core_2.EventEmitter();
         this.logonEmitter = new core_2.EventEmitter();
         this.logonStatus = false;
         this.logonEmitter.emit(this.logonStatus);
+        this.logonUserEmitter = new core_2.EventEmitter();
+        this.logonUser = { username: "", email: "", name: "", team: "" };
     }
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -27,10 +30,24 @@ var LoginComponent = (function () {
         headers.append('Content-Type', 'application/json');
         this.http.post('login', JSON.stringify({ username: this.username, password: this.password }), { headers: headers }).map(function (response) { return response.json(); }).subscribe(function (res) {
             if (res.success) {
-                console.log('verified');
-                _this.logonStatus = true;
-                console.log(_this.logonStatus);
-                _this.logonEmitter.emit(_this.logonStatus);
+                _this.http.get('api/user/?username=' + _this.username).map(function (response) { return response.json(); }).subscribe(function (res) {
+                    res.map(function (user) {
+                        _this.logonUser = {
+                            username: user.username,
+                            name: user.name,
+                            email: user.email,
+                            team: user.team
+                        };
+                        _this.logonUserEmitter.emit(_this.logonUser);
+                        console.log(_this.logonUser);
+                        console.log("User Sent");
+                        console.log('verified');
+                        _this.logonStatus = true;
+                        console.log(_this.logonStatus);
+                        _this.logonEmitter.emit(_this.logonStatus);
+                    });
+                });
+                _this.logonUserEmitter.emit(_this.logonUser);
             }
             else {
                 console.log('not verified');
@@ -41,7 +58,7 @@ var LoginComponent = (function () {
         core_1.Component({
             selector: 'login-user',
             templateUrl: 'client/components/login/login.component.html',
-            outputs: ['logonEmitter', 'logonStatus']
+            outputs: ['logonEmitter', 'logonStatus', 'logonUser', 'logonUserEmitter']
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], LoginComponent);

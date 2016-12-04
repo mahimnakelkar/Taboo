@@ -46,7 +46,7 @@ var AppComponent = (function () {
             selector: "taboo-app",
             templateUrl: 'client/components/app/app.component.html',
             styleUrls: ["client/components/app/app.component.css"],
-            inputs: ['loginStatus', 'user', 'logonStatus']
+            inputs: ['loginStatus', 'user', 'logonStatus', 'logonUser']
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
