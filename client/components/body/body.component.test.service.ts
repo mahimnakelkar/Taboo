@@ -41,7 +41,7 @@ export class bodycomponentservice {
 		this.getTeamScore(team).subscribe(res => {
 			res.map((ret_team:any)=>
 	 		{		 			
-	 			var score = ret_team.score +1;
+	 			var score = ret_team.score +2;
 				this.http.post('api/team/', JSON.stringify({name:team.toLowerCase(),score:score}), {headers: headers}).subscribe(res=>{});
 			});
 		});
@@ -53,12 +53,25 @@ export class bodycomponentservice {
 		this.getTeamScore(team).subscribe(res => {
 			res.map((ret_team:any)=>
 	 		{	
-				var score = ret_team.score -2;
+				var score = ret_team.score -1;
 
 				console.log(score);
 				this.http.post('api/team/', JSON.stringify({name:team.toLowerCase(),score:score}), {headers: headers}).subscribe(res=>{});
 			});
 		});
+	}
+	decrementUserScore(user:any){
+		var headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		var score = user.score -1;
+		this.http.post('api/user/', JSON.stringify({_id:user._id,score:score}), {headers: headers}).subscribe(res=>{});
+	}
+
+	incrementUserScore(user:any){
+		var headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		var score = user.score +2;
+		this.http.post('api/user/', JSON.stringify({_id:user._id,score:score}), {headers: headers}).subscribe(res=>{});
 	}
 
 	getUserScore(username:string) {

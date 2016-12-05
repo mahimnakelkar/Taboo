@@ -46,7 +46,7 @@ var bodycomponentservice = (function () {
         headers.append('Content-Type', 'application/json');
         this.getTeamScore(team).subscribe(function (res) {
             res.map(function (ret_team) {
-                var score = ret_team.score + 1;
+                var score = ret_team.score + 2;
                 _this.http.post('api/team/', JSON.stringify({ name: team.toLowerCase(), score: score }), { headers: headers }).subscribe(function (res) { });
             });
         });
@@ -57,11 +57,23 @@ var bodycomponentservice = (function () {
         headers.append('Content-Type', 'application/json');
         this.getTeamScore(team).subscribe(function (res) {
             res.map(function (ret_team) {
-                var score = ret_team.score - 2;
+                var score = ret_team.score - 1;
                 console.log(score);
                 _this.http.post('api/team/', JSON.stringify({ name: team.toLowerCase(), score: score }), { headers: headers }).subscribe(function (res) { });
             });
         });
+    };
+    bodycomponentservice.prototype.decrementUserScore = function (user) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var score = user.score - 1;
+        this.http.post('api/user/', JSON.stringify({ _id: user._id, score: score }), { headers: headers }).subscribe(function (res) { });
+    };
+    bodycomponentservice.prototype.incrementUserScore = function (user) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var score = user.score + 2;
+        this.http.post('api/user/', JSON.stringify({ _id: user._id, score: score }), { headers: headers }).subscribe(function (res) { });
     };
     bodycomponentservice.prototype.getUserScore = function (username) {
         return this.http.get('api/user/?username=' + username).map(function (response) { return response.json(); });

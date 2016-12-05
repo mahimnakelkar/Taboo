@@ -115,6 +115,11 @@ export class BodyComponent{
 	 		inputs.value = null;
 	 		this.testservice.setActiveFalse(card._id);
 	 		this.testservice.decrementTeamScore(this.currentUser.team);
+	 		this.testservice.getUserScore(this.currentUser.username).subscribe(res => {
+	 			res.map((user:any) => {
+	 				this.testservice.decrementUserScore(user);
+	 			})
+	 		})
 	 	}
 	 }
 
@@ -144,6 +149,12 @@ export class BodyComponent{
 
 	 	}
 	 	this.testservice.addCard(card);
+	 	this.testservice.getUserScore(this.currentUser.username).subscribe(res => {
+	 			res.map((user:any) => {
+	 				this.testservice.incrementUserScore(user);
+	 				this.testservice.incrementTeamScore(user.team);
+	 			});
+	 		})
 	 }
 
 	 constructor(private testservice: bodycomponentservice){}

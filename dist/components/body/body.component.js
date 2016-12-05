@@ -69,6 +69,7 @@ var BodyComponent = (function () {
         return card.color;
     };
     BodyComponent.prototype.submitAnswer = function (card, answer, inputs) {
+        var _this = this;
         console.log("Checking answer");
         console.log(card._id + " " + answer);
         var index = 0;
@@ -87,6 +88,11 @@ var BodyComponent = (function () {
             inputs.value = null;
             this.testservice.setActiveFalse(card._id);
             this.testservice.decrementTeamScore(this.currentUser.team);
+            this.testservice.getUserScore(this.currentUser.username).subscribe(function (res) {
+                res.map(function (user) {
+                    _this.testservice.incrementUserScore(user);
+                });
+            });
         }
     };
     BodyComponent.prototype.showAddCard = function () {
@@ -97,6 +103,7 @@ var BodyComponent = (function () {
         console.log(this.f_showAddCard);
     };
     BodyComponent.prototype.addCard = function () {
+        var _this = this;
         var curr_team = "blue";
         var card_color = "#26529E";
         if (this.currentUser.team.toLowerCase() == "blue") {
@@ -113,6 +120,12 @@ var BodyComponent = (function () {
             lon: 0
         };
         this.testservice.addCard(card);
+        this.testservice.getUserScore(this.currentUser.username).subscribe(function (res) {
+            res.map(function (user) {
+                _this.testservice.decrementUserScore(user);
+                _this.testservice.decrementTeamScore(user.team);
+            });
+        });
     };
     __decorate([
         core_1.Input(), 
