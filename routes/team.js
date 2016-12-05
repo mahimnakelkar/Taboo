@@ -28,23 +28,30 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 
-    var newteam = new Team(req.body);
-    if ( '_id' in req.body )
+    console.log(req.body);
+
+    var query = { "name" : req.body["name"] };
+
+    console.log(query);
+
+    if ( 'name' in req.body )
     {
-        newteam.update(function(err, team) {
+        Team.findOne(query, function(err, team) {
 
-            if (err) return res.send().status(500);
+            console.log(team);
+            team = new Team(team);
+            if (team)
+            {
+                team.update({"score": req.body.score}, function(err, myteam) {
 
-            else res.send().status(200);
-        });
-    }
-    else
-    {
-        newteam.save(function(err, team) {
+                    if (err) {
+                        console.log(err);
+                        return res.send().status(500);
+                    }
 
-            if (err) return res.send().status(500);
-
-            else res.send().status(200);
+                    else res.send(myteam).status(200);
+                });
+            }
         });
     }
 });
