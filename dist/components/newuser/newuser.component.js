@@ -27,7 +27,11 @@ var NewUserComponent = (function () {
         this.currentUserEmitter.emit(this.currentUser);
     }
     NewUserComponent.prototype.addUser = function () {
-        if (this.password == "" || this.username == "" || this.email == "")
+        console.log('add user test');
+        console.log(this.password);
+        if (this.password == "" || this.username == "" || this.email == "" || this.name == "")
+            return;
+        if (this.password === undefined || this.username === undefined || this.email === undefined || this.name === undefined)
             return;
         var rand = Math.floor(Math.random() * (2));
         if (rand == 0)

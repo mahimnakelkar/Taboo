@@ -35,8 +35,11 @@ export class NewUserComponent{
 	}
 
 	addUser(){
-		if(this.password == "" || this.username == "" || this.email == "") return;
+		console.log('add user test');
+		console.log(this.password);
+		if(this.password == "" || this.username == "" || this.email == "" || this.name == "") return;
 		
+		if(this.password === undefined || this.username === undefined || this.email === undefined || this.name === undefined) return;
 
 		var rand = Math.floor(Math.random() * (2));
 		if(rand == 0) this.team = "Red";
