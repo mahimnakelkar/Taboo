@@ -45,8 +45,10 @@ var bodycomponentservice = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         this.getTeamScore(team).subscribe(function (res) {
-            var score = res;
-            _this.http.post('api/team/', JSON.stringify({ team: team, score: score + 1 }), { headers: headers }).subscribe(function (res) { });
+            res.map(function (ret_team) {
+                var score = ret_team.score + 1;
+                _this.http.post('api/team/', JSON.stringify({ name: team.toLowerCase(), score: score }), { headers: headers }).subscribe(function (res) { });
+            });
         });
     };
     bodycomponentservice.prototype.decrementTeamScore = function (team) {
@@ -54,8 +56,11 @@ var bodycomponentservice = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         this.getTeamScore(team).subscribe(function (res) {
-            var score = res;
-            _this.http.post('api/team/', JSON.stringify({ team: team, score: score - 2 }), { headers: headers }).subscribe(function (res) { });
+            res.map(function (ret_team) {
+                var score = ret_team.score - 2;
+                console.log(score);
+                _this.http.post('api/team/', JSON.stringify({ name: team.toLowerCase(), score: score }), { headers: headers }).subscribe(function (res) { });
+            });
         });
     };
     bodycomponentservice.prototype.getUserScore = function (username) {
