@@ -38,7 +38,25 @@ var bodycomponentservice = (function () {
     bodycomponentservice.prototype.setActiveFalse = function (id) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post('api/card/?_id=' + id + '&active=false', JSON.stringify({ _id: id, active: false }), { headers: headers }).subscribe(function (res) { });
+        this.http.post('api/card/', JSON.stringify({ _id: id, active: false }), { headers: headers }).subscribe(function (res) { });
+    };
+    bodycomponentservice.prototype.incrementTeamScore = function (team) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        this.getTeamScore(team).subscribe(function (res) {
+            var score = res;
+            _this.http.post('api/team/', JSON.stringify({ team: team, score: score + 1 }), { headers: headers }).subscribe(function (res) { });
+        });
+    };
+    bodycomponentservice.prototype.decrementTeamScore = function (team) {
+        var _this = this;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        this.getTeamScore(team).subscribe(function (res) {
+            var score = res;
+            _this.http.post('api/team/', JSON.stringify({ team: team, score: score - 2 }), { headers: headers }).subscribe(function (res) { });
+        });
     };
     bodycomponentservice = __decorate([
         core_1.Injectable(), 
