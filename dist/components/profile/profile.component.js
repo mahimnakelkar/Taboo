@@ -14,15 +14,19 @@ var ProfileComponent = (function () {
     function ProfileComponent(testservice) {
         this.testservice = testservice;
         this.userscore = 0;
+        this.teamscore = 0;
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log("Profile Init");
         this.testservice.getUserScore(this.currentUser.username).subscribe(function (res) {
             res.map(function (user) {
-                console.log(_this.userscore);
-                _this.userscore = user.score + 10;
-                console.log(_this.userscore);
+                _this.userscore = user.score;
+            });
+        });
+        this.testservice.getTeamScore(this.currentUser.team).subscribe(function (res) {
+            res.map(function (team) {
+                _this.teamscore = team.score;
             });
         });
     };

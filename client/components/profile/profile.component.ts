@@ -14,15 +14,27 @@ import { bodycomponentservice } from '../body/body.component.test.service';
 export class ProfileComponent{
 	@Input() currentUser:{username:string,name:string,email:string,team:string};
 	userscore = 0;
+	teamscore = 0;
 	ngOnInit() {
 		console.log("Profile Init");
 		this.testservice.getUserScore(this.currentUser.username).subscribe(res =>
 			{
 					res.map((user:any)=>
 					{
-						console.log(this.userscore);
-						this.userscore = user.score + 10;
-						console.log(this.userscore);
+						
+						this.userscore = user.score;
+						
+					})
+				
+			});
+
+		this.testservice.getTeamScore(this.currentUser.team).subscribe(res =>
+			{
+					res.map((team:any)=>
+					{
+						
+						this.teamscore = team.score;
+						
 					})
 				
 			});

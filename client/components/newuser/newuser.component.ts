@@ -63,7 +63,7 @@ export class NewUserComponent{
 			email:this.email,
 			name:this.name,
 			team:this.team,
-			score:0			
+			score:10		
 		};		
 		this.userservice.addUser(this.user);	
 	}	
