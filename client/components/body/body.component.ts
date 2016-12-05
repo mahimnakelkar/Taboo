@@ -125,9 +125,18 @@ export class BodyComponent{
 
 
 	 showAddCard() {
-	 	if(this.f_showAddCard == "true")	this.f_showAddCard = "false";
-	 	else this.f_showAddCard = "true";
-	 	console.log(this.f_showAddCard);
+	 	this.testservice.getUserScore(this.currentUser.username).subscribe(res => {
+	 			res.map((user:any) => {
+	 				if(user.score <=0 ) return;
+	 				else {
+	 					if(this.f_showAddCard == "true")	this.f_showAddCard = "false";
+	 					else this.f_showAddCard = "true";
+	 					console.log(this.f_showAddCard);
+	 				}
+	 			});
+	 		})
+
+	 	
 	 }
 
 	 addCard() {
@@ -148,6 +157,12 @@ export class BodyComponent{
 	 		lon:0
 
 	 	}
+	 	this.f_showAddCard = "false";
+	 	this.clue1 = "";
+	 	this.clue2 = "";
+	 	this.clue3 = "";
+	 	this.ans = "";
+
 	 	this.testservice.addCard(card);
 	 	this.testservice.getUserScore(this.currentUser.username).subscribe(res => {
 	 			res.map((user:any) => {

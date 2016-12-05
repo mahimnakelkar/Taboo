@@ -96,11 +96,20 @@ var BodyComponent = (function () {
         }
     };
     BodyComponent.prototype.showAddCard = function () {
-        if (this.f_showAddCard == "true")
-            this.f_showAddCard = "false";
-        else
-            this.f_showAddCard = "true";
-        console.log(this.f_showAddCard);
+        var _this = this;
+        this.testservice.getUserScore(this.currentUser.username).subscribe(function (res) {
+            res.map(function (user) {
+                if (user.score <= 0)
+                    return;
+                else {
+                    if (_this.f_showAddCard == "true")
+                        _this.f_showAddCard = "false";
+                    else
+                        _this.f_showAddCard = "true";
+                    console.log(_this.f_showAddCard);
+                }
+            });
+        });
     };
     BodyComponent.prototype.addCard = function () {
         var _this = this;
@@ -119,6 +128,11 @@ var BodyComponent = (function () {
             lat: 0,
             lon: 0
         };
+        this.f_showAddCard = "false";
+        this.clue1 = "";
+        this.clue2 = "";
+        this.clue3 = "";
+        this.ans = "";
         this.testservice.addCard(card);
         this.testservice.getUserScore(this.currentUser.username).subscribe(function (res) {
             res.map(function (user) {
