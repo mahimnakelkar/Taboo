@@ -87,7 +87,7 @@ var BodyComponent = (function () {
             this.cards.shift();
             inputs.value = null;
             this.testservice.setActiveFalse(card._id);
-            this.testservice.decrementTeamScore(this.currentUser.team);
+            this.testservice.incrementTeamScore(this.currentUser.team);
             this.testservice.getUserScore(this.currentUser.username).subscribe(function (res) {
                 res.map(function (user) {
                     _this.testservice.incrementUserScore(user);

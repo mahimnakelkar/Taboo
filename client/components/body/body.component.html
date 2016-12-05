@@ -36,11 +36,11 @@
 </div>
 
 <div class="box" *ngIf="f_showAddCard == 'true'">
-	<input type="text" placeholder="Clue 1" [value] = 'clue1' [(ngModel)]="clue1"/> <br>
-	<input type="text" placeholder="Clue 2" [value] = 'clue2' [(ngModel)]="clue2"/> <br>
-	<input type="text" placeholder="Clue 3" [value] = 'clue3' [(ngModel)]="clue3"/> <br>
-	<input type="text" placeholder="Answer" [value] = 'ans' [(ngModel)]="ans"/> <br>
-	<button (click)="addCard()" class="btn btn-sm btn-block btn-default"> Create Card </button>
+	<input type="text" class="addInput" placeholder="Clue 1" [value] = 'clue1' [(ngModel)]="clue1"/> <br> <br>
+	<input type="text" class="addInput" placeholder="Clue 2" [value] = 'clue2' [(ngModel)]="clue2"/> <br> <br>
+	<input type="text" class="addInput" placeholder="Clue 3" [value] = 'clue3' [(ngModel)]="clue3"/> <br> <br>
+	<input type="text" class="addInput" placeholder="Answer" [value] = 'ans' [(ngModel)]="ans"/> <br> <br>
+	<button (click)="addCard()" class="btn-sm btn-block btn-default btn-primary"> Create Card </button>
 </div>
 
 <div class="addButton">

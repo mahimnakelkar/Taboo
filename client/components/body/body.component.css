@@ -122,10 +122,27 @@
 }
 
 .box {
-	border:1px solid black;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	
+	border-radius: 5px;
 	position: fixed;
 	bottom: 150px;
 	right: 150px;
 	width:150px;
+	background-color: #43a320;
+	padding:10px;
+	margin:auto;
 
+}
+
+.addInput {
+	background: #333;
+	color: #ccc;
+	padding: 5px;
+	border-radius: 20px;
+	border: 1px solid #ccc;
+	box-shadow: 2px 1px 2px #868686;
+	width:125px;
+	height: 25px;
+	margin:auto;
 }
