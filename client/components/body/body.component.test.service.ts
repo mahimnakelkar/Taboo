@@ -39,18 +39,26 @@ export class bodycomponentservice {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		this.getTeamScore(team).subscribe(res => {
-			var score = res;
-			this.http.post('api/team/', JSON.stringify({team:team,score:score+1}), {headers: headers}).subscribe(res=>{});
-		})
+			res.map((ret_team:any)=>
+	 		{		 			
+	 			var score = ret_team.score +1;
+				this.http.post('api/team/', JSON.stringify({name:team.toLowerCase(),score:score}), {headers: headers}).subscribe(res=>{});
+			});
+		});
 	}
 
 	decrementTeamScore(team:string){
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		this.getTeamScore(team).subscribe(res => {
-			var score = res;
-			this.http.post('api/team/', JSON.stringify({team:team,score:score-2}), {headers: headers}).subscribe(res=>{});
-		})
+			res.map((ret_team:any)=>
+	 		{	
+				var score = ret_team.score -2;
+
+				console.log(score);
+				this.http.post('api/team/', JSON.stringify({name:team.toLowerCase(),score:score}), {headers: headers}).subscribe(res=>{});
+			});
+		});
 	}
 
 	getUserScore(username:string) {
