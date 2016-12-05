@@ -16,7 +16,7 @@ export class NewUserComponent{
 	password: string;
 	team: string;
 	testval: string = "hello";
-	user:{username:string,password:string,email:string,name:string,team:string};
+	user:{username:string,password:string,email:string,name:string,team:string,score:number};
 	loginStatus: boolean = false;
 	
 	currentUser:{name:string, username:string, email:string, team:string};
@@ -28,7 +28,7 @@ export class NewUserComponent{
 		this.currentUserEmitter = new EventEmitter();
 		this.loginStatus = false;
 		this.loginEmitter.emit(this.loginStatus);
-		this.user = {username:"",password:"",email:"",name:"",team:""};
+		this.user = {username:"",password:"",email:"",name:"",team:"",score:0};
 		this.currentUser = {name:"", username:"", email:"",team:""};
 		this.currentUserEmitter.emit(this.currentUser);
 
@@ -62,7 +62,8 @@ export class NewUserComponent{
 			password: this.password,
 			email:this.email,
 			name:this.name,
-			team:this.team			
+			team:this.team,
+			score:0			
 		};		
 		this.userservice.addUser(this.user);	
 	}	

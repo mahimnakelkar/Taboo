@@ -86,6 +86,7 @@ var BodyComponent = (function () {
             this.cards.shift();
             inputs.value = null;
             this.testservice.setActiveFalse(card._id);
+            this.testservice.decrementTeamScore(this.currentUser.team);
         }
     };
     BodyComponent.prototype.showAddCard = function () {

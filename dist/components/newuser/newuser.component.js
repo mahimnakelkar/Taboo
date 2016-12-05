@@ -22,7 +22,7 @@ var NewUserComponent = (function () {
         this.currentUserEmitter = new core_2.EventEmitter();
         this.loginStatus = false;
         this.loginEmitter.emit(this.loginStatus);
-        this.user = { username: "", password: "", email: "", name: "", team: "" };
+        this.user = { username: "", password: "", email: "", name: "", team: "", score: 0 };
         this.currentUser = { name: "", username: "", email: "", team: "" };
         this.currentUserEmitter.emit(this.currentUser);
     }
@@ -52,7 +52,8 @@ var NewUserComponent = (function () {
             password: this.password,
             email: this.email,
             name: this.name,
-            team: this.team
+            team: this.team,
+            score: 0
         };
         this.userservice.addUser(this.user);
     };

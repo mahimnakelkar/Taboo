@@ -114,6 +114,7 @@ export class BodyComponent{
 	 		this.cards.shift();
 	 		inputs.value = null;
 	 		this.testservice.setActiveFalse(card._id);
+	 		this.testservice.decrementTeamScore(this.currentUser.team);
 	 	}
 	 }
 

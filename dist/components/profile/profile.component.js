@@ -9,9 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var body_component_test_service_1 = require('../body/body.component.test.service');
 var ProfileComponent = (function () {
-    function ProfileComponent() {
+    function ProfileComponent(testservice) {
+        this.testservice = testservice;
+        this.userscore = 0;
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log("Profile Init");
+        this.testservice.getUserScore(this.currentUser.username).subscribe(function (res) {
+            res.map(function (user) {
+                console.log(_this.userscore);
+                _this.userscore = user.score + 10;
+                console.log(_this.userscore);
+            });
+        });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -20,9 +34,10 @@ var ProfileComponent = (function () {
         core_1.Component({
             selector: 'profile',
             templateUrl: 'client/components/profile/profile.component.html',
-            styleUrls: ["client/components/profile/profile.component.css"]
+            styleUrls: ["client/components/profile/profile.component.css"],
+            providers: [body_component_test_service_1.bodycomponentservice]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [body_component_test_service_1.bodycomponentservice])
     ], ProfileComponent);
     return ProfileComponent;
 }());

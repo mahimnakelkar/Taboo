@@ -58,6 +58,9 @@ var bodycomponentservice = (function () {
             _this.http.post('api/team/', JSON.stringify({ team: team, score: score - 2 }), { headers: headers }).subscribe(function (res) { });
         });
     };
+    bodycomponentservice.prototype.getUserScore = function (username) {
+        return this.http.get('api/user/?username=' + username).map(function (response) { return response.json(); });
+    };
     bodycomponentservice = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

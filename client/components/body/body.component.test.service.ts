@@ -53,6 +53,9 @@ export class bodycomponentservice {
 		})
 	}
 
+	getUserScore(username:string) {
+		return this.http.get('api/user/?username=' + username).map(response => response.json());
+	}
 
 
 }
