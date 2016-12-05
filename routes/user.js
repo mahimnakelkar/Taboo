@@ -29,14 +29,28 @@ router.post('/', function(req,res) {
 
     console.log('newuser post');
 
-    var newuser = new User(req.body);
+    if ( '_id' in req.body)
+    {
+        User.findOne({"_id": req.body["_id"] }, function(err, user) {
+            user.update(req.body, function(err, myuser) {
+                if (err) return res.send().status(500);
 
-    newuser.save(function(err, user) {
+                res.send(myuser).status(500);
+            });
+        });
+    }
+    else
+    {
+        var newuser = new User(req.body);
 
-        if (err) return res.send().status(500);
+        newuser.save(function(err, user) {
 
-        res.send().status(200);
-    });
+            if (err) return res.send().status(500);
+
+            res.send().status(200);
+        });
+    }
+
 
 });
 
